@@ -213,6 +213,9 @@ document.addEventListener("DOMContentLoaded", function () {
       s.x += s.vx * 0.45;
       s.y += s.vy * 0.45;
 
+      s.vx *= 0.96;
+      s.vy *= 0.96;
+
       if (s.x <= 0 || s.x >= w - s.size) s.vx *= -1;
       if (s.y <= 0 || s.y >= h - s.size) s.vy *= -1;
 
