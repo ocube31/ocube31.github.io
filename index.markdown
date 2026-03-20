@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const clickSound = new Audio(CLICK_SOUND_SRC);
   clickSound.preload = "auto";
-  clickSound.volume = 0.25;
+  clickSound.volume = 0.35;
 
   function randomBetween(min, max) {
     return Math.random() * (max - min) + min;
@@ -152,30 +152,64 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  const mobileTopSafe = 140;
+  const mobileSidePad = 18;
+  const mobileBottomPad = 24;
+
   for (let i = 0; i < COUNT; i++) {
     const star = document.createElement("img");
     star.src = STAR_SRC;
     star.className = "moving-star";
+    star.alt = "";
     container.appendChild(star);
 
     const size = isMobile
-      ? randomBetween(28, 44)
+      ? randomBetween(24, 38)
       : randomBetween(20, 42);
 
     const baseSpeed = isMobile
-      ? randomBetween(0.10, 0.22)
-      : randomBetween(0.025, 0.07);
+      ? randomBetween(0.06, 0.18)
+      : randomBetween(0.018, 0.05);
 
     const speedFactor = (44 - Math.min(size, 44)) / 20;
 
     const starData = {
       el: star,
-      x: randomBetween(0, window.innerWidth - size),
-      y: randomBetween(0, window.innerHeight - size),
+      x: isMobile
+        ? randomBetween(
+            mobileSidePad,
+            Math.max(mobileSidePad, window.innerWidth - size - mobileSidePad)
+          )
+        : randomBetween(0, window.innerWidth - size),
+      y: isMobile
+        ? randomBetween(
+            mobileTopSafe,
+            Math.max(mobileTopSafe, window.innerHeight - size - mobileBottomPad)
+          )
+        : randomBetween(0, window.innerHeight - size),
       vx: baseSpeed * speedFactor * (Math.random() > 0.5 ? 1 : -1),
       vy: baseSpeed * speedFactor * (Math.random() > 0.5 ? 1 : -1),
       size
     };
+
+    if (isMobile) {
+      for (const other of state) {
+        const dx = starData.x - other.x;
+        const dy = starData.y - other.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 70) {
+          starData.x = randomBetween(
+            mobileSidePad,
+            Math.max(mobileSidePad, window.innerWidth - size - mobileSidePad)
+          );
+          starData.y = randomBetween(
+            mobileTopSafe,
+            Math.max(mobileTopSafe, window.innerHeight - size - mobileBottomPad)
+          );
+        }
+      }
+    }
 
     star.style.width = size + "px";
     star.style.height = size + "px";
@@ -189,10 +223,10 @@ document.addEventListener("DOMContentLoaded", function () {
       star.animate(
         [
           { transform: `translate(${starData.x}px, ${starData.y}px) scale(1)` },
-          { transform: `translate(${starData.x}px, ${starData.y}px) scale(1.18)` },
+          { transform: `translate(${starData.x}px, ${starData.y}px) scale(1.35)` },
           { transform: `translate(${starData.x}px, ${starData.y}px) scale(1)` }
         ],
-        { duration: 140, easing: "ease-out" }
+        { duration: 180 }
       );
     }
 
@@ -213,11 +247,28 @@ document.addEventListener("DOMContentLoaded", function () {
       s.x += s.vx * 0.45;
       s.y += s.vy * 0.45;
 
-      s.vx *= 0.95;
-      s.vy *= 0.95;
+      s.vx *= 0.88;
+      s.vy *= 0.88;
 
-      if (s.x <= 0 || s.x >= w - s.size) s.vx *= -1;
-      if (s.y <= 0 || s.y >= h - s.size) s.vy *= -1;
+      const minSpeed = isMobile ? 0.08 : 0.03;
+      if (Math.abs(s.vx) < minSpeed) s.vx = minSpeed * (s.vx < 0 ? -1 : 1);
+      if (Math.abs(s.vy) < minSpeed) s.vy = minSpeed * (s.vy < 0 ? -1 : 1);
+
+      if (s.x <= 0) {
+        s.x = 0;
+        s.vx *= -1;
+      } else if (s.x >= w - s.size) {
+        s.x = w - s.size;
+        s.vx *= -1;
+      }
+
+      if (s.y <= 0) {
+        s.y = 0;
+        s.vy *= -1;
+      } else if (s.y >= h - s.size) {
+        s.y = h - s.size;
+        s.vy *= -1;
+      }
 
       s.el.style.transform = `translate(${s.x}px, ${s.y}px)`;
     }
@@ -235,6 +286,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.addEventListener("mouseleave", () => {
     mouse.active = false;
+  });
+
+  window.addEventListener("touchstart", (e) => {
+    const touch = e.touches[0];
+    if (!touch) return;
+    mouse.x = touch.clientX;
+    mouse.y = touch.clientY;
+    mouse.active = true;
+  }, { passive: true });
+
+  window.addEventListener("touchmove", (e) => {
+    const touch = e.touches[0];
+    if (!touch) return;
+    mouse.x = touch.clientX;
+    mouse.y = touch.clientY;
+    mouse.active = true;
+  }, { passive: true });
+
+  window.addEventListener("touchend", () => {
+    mouse.active = false;
+  });
+
+  window.addEventListener("scroll", () => {
+    const logo = document.querySelector(".fixed-logo");
+    const scrollY = window.scrollY;
+    if (logo) {
+      logo.style.opacity = Math.max(0, 0.88 - scrollY / 300);
+      logo.style.transition = "opacity 0.3s ease";
+    }
   });
 
   setTimeout(() => {
