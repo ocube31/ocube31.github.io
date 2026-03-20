@@ -59,3 +59,32 @@ html, body {
     filter: drop-shadow(0 3px 6px rgba(91, 124, 153, 0.2));
   }
 }
+.moving-star {
+  animation: floatStar 7s ease-in-out infinite;
+}
+
+.moving-star:nth-child(2n) {
+  animation-duration: 9s;
+}
+
+.moving-star:nth-child(3n) {
+  animation-duration: 11s;
+}
+
+@keyframes floatStar {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-6px) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(4px) rotate(2deg);
+  }
+  75% {
+    transform: translateY(-3px) rotate(-1deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
