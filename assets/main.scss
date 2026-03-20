@@ -1,32 +1,4 @@
----
----
-@import "minima";
-
-:root {
-  --bg: #d8d3c5;
-  --text: #111;
-  --line: #dce6f0;
-}
-
-body {
-  background-color: var(--bg) !important;
-  color: var(--text) !important;
-  overflow-x: hidden;
-}
-
-.site-header {
-  background: transparent !important;
-  border-top: 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.wrapper {
-  background: transparent !important;
-}
-
-.site-title,
-.site-title:visited,
-h1, h2, h3, p,
+/* 기본 텍스트 */
 .page-link {
   color: var(--text) !important;
 }
@@ -35,6 +7,7 @@ h1 {
   font-size: 56px;
 }
 
+/* ⭐ 별 전체 컨테이너 */
 .floating-stars {
   position: fixed;
   inset: 0;
@@ -43,88 +16,48 @@ h1 {
   overflow: hidden;
 }
 
+/* ⭐ 기본 별 (모바일 기준: 정리된 상태) */
 .moving-star {
   position: absolute;
   left: 0;
   top: 0;
   object-fit: contain;
-  opacity: 0.95;
+
+  opacity: 0.35; /* 기본은 연하게 */
   will-change: transform;
-  filter: drop-shadow(0 4px 8px rgba(91, 124, 153, 0.25));
+
+  filter: drop-shadow(0 3px 6px rgba(91, 124, 153, 0.2));
 }
 
+/* ⭐ 모바일에서는 별 일부 숨김 */
+@media (max-width: 768px) {
+  .moving-star:nth-child(2n) {
+    display: none;
+  }
+
+  .moving-star:nth-child(3n) {
+    opacity: 0.45;
+    transform: scale(0.75);
+  }
+}
+
+/* ⭐ PC에서는 별 더 많고 진하게 */
+@media (min-width: 1024px) {
+  .moving-star {
+    opacity: 1 !important;
+    transform: scale(1.1);
+    filter: drop-shadow(0 6px 12px rgba(91, 124, 153, 0.4));
+  }
+
+  .moving-star:nth-child(2n) {
+    display: block !important; /* 숨겼던 별 다시 살림 */
+  }
+}
+
+/* ⭐ 콘텐츠는 별 위로 올라오게 */
 .site-header,
 .page-content,
 .site-footer {
   position: relative;
   z-index: 1;
-}
-/* ===== 모바일 최적화 ===== */
-@media (max-width: 768px) {
-
-  .moving-star {
-  opacity: 0.25;
-  transform: scale(0.8);
-}
-
-  .post-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 0 14px;
-  }
-
-  .post-card {
-    padding: 14px;
-    border-radius: 16px;
-  }
-
-  .post-card img,
-  .post-card-thumb {
-    height: 180px;
-    object-fit: cover;
-    border-radius: 14px;
-  }
-
-  .post-card-title {
-    font-size: 18px;
-    line-height: 1.4;
-  }
-
-  .post-card-excerpt {
-    font-size: 14px;
-    line-height: 1.7;
-  }
-
-  .post-card-date {
-    font-size: 12px;
-  }
-
-  .category-menu {
-    font-size: 11px;
-    letter-spacing: 1px;
-    margin: 12px 0 16px;
-  }
-
-  .archive-title {
-    margin-top: 120px;
-    font-size: 18px;
-  }
-}
-/* ===== 별 최종 튜닝 ===== */
-
-/* ⭐ 전체 별 기본 */
-.moving-star {
-  opacity: 0.35;          /* 너무 흐리지 않게 */
-  transform: scale(0.7);  /* 크기 줄이기 */
-}
-
-/* ⭐ 일부 별 숨기기 (갯수 줄이기 핵심) */
-.moving-star:nth-child(2n) {
-  display: none;
-}
-
-/* ⭐ 조금만 남은 애들 강조 */
-.moving-star:nth-child(3n) {
-  opacity: 0.45;
-  transform: scale(0.75);
 }
