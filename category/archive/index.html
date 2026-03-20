@@ -1,0 +1,57 @@
+---
+layout: default
+title: archive
+---
+
+<h2 class="archive-title">archive</h2>
+
+<ul class="post-list">
+{% for post in site.categories.archive %}
+  <li>
+    <span class="post-date">{{ post.date | date: "%Y.%m.%d" }}</span>
+    <a href="{{ post.url }}">{{ post.title }}</a>
+  </li>
+{% endfor %}
+</ul>
+
+<style>
+.archive-title {
+  margin-top: 140px;
+  text-align: center;
+  font-size: 20px;
+  letter-spacing: 3px;
+  font-family: "Cormorant Garamond", serif;
+  opacity: 0.7;
+}
+
+.post-list {
+  max-width: 520px;
+  margin: 40px auto;
+  padding: 0;
+  list-style: none;
+}
+
+.post-list li {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.post-date {
+  display: block;
+  font-size: 12px;
+  opacity: 0.5;
+  margin-bottom: 4px;
+}
+
+.post-list a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #3a3a3a;
+  transition: opacity 0.3s ease;
+  font-family: "Cormorant Garamond", serif;
+}
+
+.post-list a:hover {
+  opacity: 0.4;
+}
+</style>
