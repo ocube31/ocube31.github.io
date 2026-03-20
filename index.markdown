@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const baseSpeed = isMobile
       ? randomBetween(0.06, 0.18)
-      : randomBetween(0.018, 0.05);
+      : randomBetween(0.04, 0.10);
 
     const speedFactor = (44 - Math.min(size, 44)) / 20;
 
@@ -244,11 +244,11 @@ document.addEventListener("DOMContentLoaded", function () {
       applyMouseRepel(s);
       applyGlow(s);
 
-      s.x += s.vx * 0.45;
-      s.y += s.vy * 0.45;
+      s.x += s.vx * (isMobile ? 0.45 : 0.75);
+      s.y += s.vy * (isMobile ? 0.45 : 0.75);
 
-      s.vx *= 0.88;
-      s.vy *= 0.88;
+     s.vx *= isMobile ? 0.88 : 0.94;
+     s.vy *= isMobile ? 0.88 : 0.94;
 
       const minSpeed = isMobile ? 0.08 : 0.03;
       if (Math.abs(s.vx) < minSpeed) s.vx = minSpeed * (s.vx < 0 ? -1 : 1);
