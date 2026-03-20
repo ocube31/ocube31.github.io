@@ -110,3 +110,21 @@ h1 {
     font-size: 18px;
   }
 }
+/* ===== 별 최종 튜닝 ===== */
+
+/* ⭐ 전체 별 기본 */
+.moving-star {
+  opacity: 0.35;          /* 너무 흐리지 않게 */
+  transform: scale(0.7);  /* 크기 줄이기 */
+}
+
+/* ⭐ 일부 별 숨기기 (갯수 줄이기 핵심) */
+.moving-star:nth-child(2n) {
+  display: none;
+}
+
+/* ⭐ 조금만 남은 애들 강조 */
+.moving-star:nth-child(3n) {
+  opacity: 0.45;
+  transform: scale(0.75);
+}
