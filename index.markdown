@@ -90,8 +90,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (dist > 0 && dist < repelRadius) {
       const force = (repelRadius - dist) / repelRadius;
-      s.vx += (dx / dist) * force * 0.035;
-      s.vy += (dy / dist) * force * 0.035;
+      s.vx += (dx / dist) * force * 0.015;
+      s.vy += (dy / dist) * force * 0.015;
     }
   }
 
@@ -210,8 +210,8 @@ document.addEventListener("DOMContentLoaded", function () {
       applyMouseRepel(s);
       applyGlow(s);
 
-      s.x += s.vx * 0.75;
-      s.y += s.vy * 0.75;
+      s.x += s.vx * 0.45;
+      s.y += s.vy * 0.45;
 
       if (s.x <= 0 || s.x >= w - s.size) s.vx *= -1;
       if (s.y <= 0 || s.y >= h - s.size) s.vy *= -1;
