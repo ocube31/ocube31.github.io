@@ -59,3 +59,53 @@ h1 {
   position: relative;
   z-index: 1;
 }
+/* ===== 모바일 최적화 ===== */
+@media (max-width: 768px) {
+
+  .moving-star {
+    opacity: 0.4;
+  }
+
+  .post-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0 14px;
+  }
+
+  .post-card {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .post-card img,
+  .post-card-thumb {
+    height: 180px;
+    object-fit: cover;
+    border-radius: 14px;
+  }
+
+  .post-card-title {
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .post-card-excerpt {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .post-card-date {
+    font-size: 12px;
+  }
+
+  .category-menu {
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin: 12px 0 16px;
+  }
+
+  .archive-title {
+    margin-top: 120px;
+    font-size: 18px;
+  }
+}
