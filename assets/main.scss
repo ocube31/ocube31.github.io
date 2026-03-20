@@ -58,14 +58,4 @@ html, body {
 
     filter: drop-shadow(0 3px 6px rgba(91, 124, 153, 0.2));
   }
-
-  /* 별 개수 줄이기 */
-  .moving-star:nth-child(2n) {
-    display: none;
-  }
-
-  /* 일부만 살짝 또렷 */
-  .moving-star:nth-child(3n) {
-    opacity: 0.45 !important;
-  }
 }
