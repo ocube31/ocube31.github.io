@@ -4,6 +4,28 @@ layout: default
 
 <div id="floating-stars"></div>
 
+<script>
+const container = document.getElementById("floating-stars");
+
+/* ⭐ PC / 모바일 개수 분기 */
+const starCount = window.innerWidth < 768 ? 10 : 40;
+
+for (let i = 0; i < starCount; i++) {
+  const star = document.createElement("img");
+  star.src = "/assets/img/star.png"; // ⭐ 파일명 맞춰줘
+  star.className = "moving-star";
+
+  const size = Math.random() * 30 + 30;
+  star.style.width = size + "px";
+  star.style.height = size + "px";
+
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.top = Math.random() * 100 + "vh";
+
+  container.appendChild(star);
+}
+</script>
+
 <div id="intro">
   ˏ 𓏧 𓏲 𓏲 𓏲 𓋒𓏲 𓏲 𓏲 𓏲 𓏧 ˎ<br>
   ‧̍̊˙· 𓆝.° ｡˚𓆛˚｡ °.𓆞 ·˙‧̍̊
