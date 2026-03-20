@@ -63,8 +63,9 @@ h1 {
 @media (max-width: 768px) {
 
   .moving-star {
-    opacity: 0.25;
-  }
+  opacity: 0.25;
+  transform: scale(0.8);
+}
 
   .post-grid {
     grid-template-columns: 1fr;
