@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const clickSound = new Audio(CLICK_SOUND_SRC);
   clickSound.preload = "auto";
-  clickSound.volume = 0.35;
+  clickSound.volume = 0.25;
 
   function randomBetween(min, max) {
     return Math.random() * (max - min) + min;
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const baseSpeed = isMobile
       ? randomBetween(0.10, 0.22)
-      : randomBetween(0.12, 0.28);
+      : randomBetween(0.05, 0.12);
 
     const speedFactor = (44 - Math.min(size, 44)) / 20;
 
@@ -210,8 +210,8 @@ document.addEventListener("DOMContentLoaded", function () {
       applyMouseRepel(s);
       applyGlow(s);
 
-      s.x += s.vx;
-      s.y += s.vy;
+      s.x += s.vx * 0.75;
+      s.y += s.vy * 0.75;
 
       if (s.x <= 0 || s.x >= w - s.size) s.vx *= -1;
       if (s.y <= 0 || s.y >= h - s.size) s.vy *= -1;
