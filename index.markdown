@@ -163,8 +163,8 @@ document.addEventListener("DOMContentLoaded", function () {
       : randomBetween(20, 42);
 
     const baseSpeed = isMobile
-      ? randomBetween(0.14, 0.32)
-      : randomBetween(0.22, 0.55);
+      ? randomBetween(0.10, 0.22)
+      : randomBetween(0.12, 0.28);
 
     const speedFactor = (44 - Math.min(size, 44)) / 20;
 
@@ -189,10 +189,10 @@ document.addEventListener("DOMContentLoaded", function () {
       star.animate(
         [
           { transform: `translate(${starData.x}px, ${starData.y}px) scale(1)` },
-          { transform: `translate(${starData.x}px, ${starData.y}px) scale(1.35)` },
+          { transform: `translate(${starData.x}px, ${starData.y}px) scale(1.18)` },
           { transform: `translate(${starData.x}px, ${starData.y}px) scale(1)` }
         ],
-        { duration: 180 }
+        { duration: 140, easing: "ease-out" }
       );
     }
 
