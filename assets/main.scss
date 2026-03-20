@@ -36,7 +36,20 @@ html, body {
   height: 54px;
 
   will-change: transform;
-  filter: drop-shadow(0 6px 12px rgba(91, 124, 153, 0.4));
+ .moving-star {
+  position: absolute;
+  left: 0;
+  top: 0;
+  object-fit: contain;
+
+  opacity: 0.95;
+  width: 54px;
+  height: 54px;
+
+  will-change: transform;
+
+  animation: floatStar 8s ease-in-out infinite; /* ⭐ 이거 추가 */
+}
 }
 
 /* ===== 콘텐츠 위로 ===== */
