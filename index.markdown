@@ -12,7 +12,7 @@ const starCount = window.innerWidth < 768 ? 10 : 40;
 
 for (let i = 0; i < starCount; i++) {
   const star = document.createElement("img");
-  star.src = "/assets/img/star.png"; // ⭐ 파일명 맞춰줘
+  star.src = "/assets/star.png"; // ⭐ 파일명 맞춰줘
   star.className = "moving-star";
 
   const size = Math.random() * 30 + 30;
