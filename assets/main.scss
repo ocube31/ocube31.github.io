@@ -1,13 +1,21 @@
-/* 기본 텍스트 */
-.page-link {
+---
+---
+
+@import "minima";
+
+/* ===== 기본 색 ===== */
+:root {
+  --bg: #d8d3c5;
+  --text: #2f2f2f;
+}
+
+/* ===== 전체 배경 ===== */
+html, body {
+  background: var(--bg) !important;
   color: var(--text) !important;
 }
 
-h1 {
-  font-size: 56px;
-}
-
-/* ⭐ 별 전체 컨테이너 */
+/* ===== 별 컨테이너 ===== */
 .floating-stars {
   position: fixed;
   inset: 0;
@@ -16,48 +24,48 @@ h1 {
   overflow: hidden;
 }
 
-/* ⭐ 기본 별 (모바일 기준: 정리된 상태) */
+/* ===== ⭐ 기본 = PC (많고 진한 상태) ===== */
 .moving-star {
   position: absolute;
   left: 0;
   top: 0;
   object-fit: contain;
 
-  opacity: 0.35; /* 기본은 연하게 */
+  opacity: 0.95;             /* 진하게 */
+  width: 54px;
+  height: 54px;
+
   will-change: transform;
-
-  filter: drop-shadow(0 3px 6px rgba(91, 124, 153, 0.2));
+  filter: drop-shadow(0 6px 12px rgba(91, 124, 153, 0.4));
 }
 
-/* ⭐ 모바일에서는 별 일부 숨김 */
-@media (max-width: 768px) {
-  .moving-star:nth-child(2n) {
-    display: none;
-  }
-
-  .moving-star:nth-child(3n) {
-    opacity: 0.45;
-    transform: scale(0.75);
-  }
-}
-
-/* ⭐ PC에서는 별 더 많고 진하게 */
-@media (min-width: 1024px) {
-  .moving-star {
-    opacity: 1 !important;
-    transform: scale(1.1);
-    filter: drop-shadow(0 6px 12px rgba(91, 124, 153, 0.4));
-  }
-
-  .moving-star:nth-child(2n) {
-    display: block !important; /* 숨겼던 별 다시 살림 */
-  }
-}
-
-/* ⭐ 콘텐츠는 별 위로 올라오게 */
+/* ===== 콘텐츠 위로 ===== */
 .site-header,
 .page-content,
 .site-footer {
   position: relative;
   z-index: 1;
+}
+
+/* ===== 📱 모바일만 덮어쓰기 ===== */
+@media (max-width: 768px) {
+
+  /* 별 작게 + 연하게 */
+  .moving-star {
+    opacity: 0.32 !important;
+    width: 36px;
+    height: 36px;
+
+    filter: drop-shadow(0 3px 6px rgba(91, 124, 153, 0.2));
+  }
+
+  /* 별 개수 줄이기 */
+  .moving-star:nth-child(2n) {
+    display: none;
+  }
+
+  /* 일부만 살짝 또렷 */
+  .moving-star:nth-child(3n) {
+    opacity: 0.45 !important;
+  }
 }
