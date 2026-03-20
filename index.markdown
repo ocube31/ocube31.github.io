@@ -189,7 +189,9 @@ document.addEventListener("DOMContentLoaded", function () {
         : randomBetween(0, window.innerHeight - size),
       vx: baseSpeed * speedFactor * (Math.random() > 0.5 ? 1 : -1),
       vy: baseSpeed * speedFactor * (Math.random() > 0.5 ? 1 : -1),
-      size
+      size,
+      angle: randomBetween(0, 360),
+      spin: randomBetween(-0.02, 0.02)   
     };
 
     if (isMobile) {
@@ -270,7 +272,10 @@ document.addEventListener("DOMContentLoaded", function () {
         s.vy *= -1;
       }
 
-      s.el.style.transform = `translate(${s.x}px, ${s.y}px)`;
+      s.angle += s.spin;
+
+      s.el.style.transform =
+      `translate(${s.x}px, ${s.y}px) rotate(${s.angle}deg)`;
     }
 
     requestAnimationFrame(animate);
