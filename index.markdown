@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
       vy: baseSpeed * speedFactor * (Math.random() > 0.5 ? 1 : -1),
       size,
       angle: randomBetween(0, 360),
-      spin: randomBetween(-0.02, 0.02)   
+      spin: randomBetween(-0.05, 0.05)   
     };
 
     if (isMobile) {
