@@ -355,3 +355,26 @@ a:visited,
     margin-top: 14px !important;
   }
 }
+.site-footer {
+  margin-top: 120px;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.footer-center {
+  text-align: center;
+}
+
+.yt-link {
+  text-decoration: none;
+  color: #777;
+  font-size: 13px;
+  letter-spacing: 2px;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.yt-link:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
