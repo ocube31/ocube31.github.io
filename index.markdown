@@ -10,7 +10,7 @@ layout: default
 </div>
 
 <div class="fixed-logo">
-  ˏ 𓏧 𓏲 𓏲 𓏲 𓋒𓏲 𓏲 𓏲 𓏲 𓏧 ˎ<br>
+  ˏ 𓏧 𓏲 𓏲 𓏲 𓏲 𓋒𓏲 𓏲 𓏲 𓏲 𓏧 ˎ<br>
   ‧̍̊˙· 𓆝.° ｡˚𓆛˚｡ °.𓆞 ·˙‧̍̊
 </div>
 
@@ -47,248 +47,6 @@ layout: default
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-
-<style>
-body {
-  margin: 0;
-  background: #f5efe6;
-  font-family: "Apple SD Gothic Neo", "Pretendard", sans-serif;
-}
-
-.archive-title {
-  margin-top: 180px;
-  text-align: center;
-  font-size: 20px;
-  letter-spacing: 3px;
-  font-family: "Cormorant Garamond", serif;
-  opacity: 0.7;
-}
-
-.post-grid {
-  max-width: 860px;
-  margin: 50px auto 100px;
-  padding: 0 20px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
-  position: relative;
-  z-index: 2;
-}
-
-.post-card {
-  display: block;
-  padding: 22px 20px;
-  text-decoration: none;
-  color: #2f2f2f;
-  background: rgba(255,255,255,0.28);
-  border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 16px;
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  transition: transform 0.25s ease, opacity 0.25s ease, border-color 0.25s ease;
-}
-
-.post-card:hover {
-  transform: translateY(-3px);
-  opacity: 0.88;
-  border-color: rgba(0,0,0,0.12);
-}
-
-.post-card-date {
-  font-size: 11px;
-  opacity: 0.45;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
-}
-
-.post-card-title {
-  font-size: 22px;
-  line-height: 1.3;
-  margin-bottom: 10px;
-  font-family: "Cormorant Garamond", serif;
-}
-
-.post-card-excerpt {
-  font-size: 13px;
-  line-height: 1.8;
-  opacity: 0.7;
-}
-
-.post-card-thumb {
-  width: 100%;
-  height: 140px;
-  overflow: hidden;
-  border-radius: 12px;
-  margin-bottom: 12px;
-}
-
-.post-card-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-@media (max-width: 768px) {
-  .post-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    margin-top: 28px;
-  }
-
-  .post-card {
-    padding: 18px 16px;
-    border-radius: 14px;
-  }
-
-  .post-card-title {
-    font-size: 20px;
-  }
-}
-
-.category-menu {
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-size: 12px;
-  letter-spacing: 2px;
-}
-
-.category-menu a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: #555;
-  opacity: 0.6;
-}
-
-.category-menu a:hover {
-  opacity: 1;
-}
-
-.site-title,
-.page-heading,
-.home h1 {
-  display: none !important;
-}
-
-#floating-stars {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  z-index: 0;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-  pointer-events: none;
-}
-
-.moving-star {
-  position: absolute;
-  left: 0;
-  top: 0;
-  pointer-events: auto;
-  will-change: transform, filter;
-  transition: filter 0.18s ease, opacity 0.18s ease;
-  touch-action: manipulation;
-  object-fit: contain;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-#intro {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 14px;
-  line-height: 1.8;
-  letter-spacing: 2px;
-  opacity: 0;
-  pointer-events: none;
-  background: #f5efe6;
-  font-family:
-    "Times New Roman",
-    "Apple SD Gothic Neo",
-    "Noto Sans Symbols",
-    serif;
-  animation: introFlow 2.8s ease forwards;
-}
-
-@keyframes introFlow {
-  0% {
-    opacity: 0;
-    transform: scale(0.6) translateY(10px);
-  }
-  20% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  40% {
-    transform: scale(1) rotate(-0.4deg);
-  }
-  60% {
-    transform: scale(1.02) rotate(0.4deg);
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.1) translateY(-10px);
-  }
-}
-
-.fixed-logo {
-  position: fixed;
-  top: 90px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 20;
-  text-align: center;
-  line-height: 1.8;
-  letter-spacing: 2px;
-  opacity: 0.88;
-  font-size: 20px;
-  white-space: nowrap;
-  pointer-events: none;
-  font-family:
-    "Cormorant Garamond",
-    "Times New Roman",
-    serif;
-  animation: logoFloat 4.8s ease-in-out infinite;
-  transform-origin: center center;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.08));
-}
-
-@media (max-width: 768px) {
-  .fixed-logo {
-    top: 72px;
-    font-size: 15px;
-    line-height: 1.7;
-    letter-spacing: 1px;
-  }
-}
-
-@keyframes logoFloat {
-  0% {
-    transform: translateX(-50%) translateY(0px) rotate(0deg);
-  }
-  25% {
-    transform: translateX(-50%) translateY(-2px) rotate(-0.4deg);
-  }
-  50% {
-    transform: translateX(-50%) translateY(1px) rotate(0.3deg);
-  }
-  75% {
-    transform: translateX(-50%) translateY(-1px) rotate(0.2deg);
-  }
-  100% {
-    transform: translateX(-50%) translateY(0px) rotate(0deg);
-  }
-}
-</style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -380,14 +138,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       spark.animate(
         [
-          {
-            transform: `translate(${x}px, ${y}px) scale(0.8)`,
-            opacity: 0.9
-          },
-          {
-            transform: `translate(${x + dx}px, ${y + dy}px) scale(0.1)`,
-            opacity: 0
-          }
+          { transform: `translate(${x}px, ${y}px) scale(0.8)`, opacity: 0.9 },
+          { transform: `translate(${x + dx}px, ${y + dy}px) scale(0.1)`, opacity: 0 }
         ],
         {
           duration: 480,
@@ -396,9 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       );
 
-      setTimeout(() => {
-        spark.remove();
-      }, 520);
+      setTimeout(() => spark.remove(), 520);
     }
   }
 
@@ -406,20 +156,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const star = document.createElement("img");
     star.src = STAR_SRC;
     star.className = "moving-star";
-    star.alt = "";
     container.appendChild(star);
 
     const size = isMobile
       ? randomBetween(28, 44)
       : randomBetween(20, 42);
 
-    const baseSpeed = isMobile ? randomBetween(0.14, 0.32) : randomBetween(0.22, 0.55);
+    const baseSpeed = isMobile
+      ? randomBetween(0.14, 0.32)
+      : randomBetween(0.22, 0.55);
+
     const speedFactor = (44 - Math.min(size, 44)) / 20;
 
     const starData = {
       el: star,
-      x: randomBetween(0, Math.max(0, window.innerWidth - size)),
-      y: randomBetween(0, Math.max(0, window.innerHeight - size)),
+      x: randomBetween(0, window.innerWidth - size),
+      y: randomBetween(0, window.innerHeight - size),
       vx: baseSpeed * speedFactor * (Math.random() > 0.5 ? 1 : -1),
       vy: baseSpeed * speedFactor * (Math.random() > 0.5 ? 1 : -1),
       size
@@ -432,10 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
       playClickSound();
 
       const rect = star.getBoundingClientRect();
-      const burstX = rect.left + rect.width / 2;
-      const burstY = rect.top + rect.height / 2;
-
-      burstStars(burstX, burstY);
+      burstStars(rect.left + rect.width / 2, rect.top + rect.height / 2);
 
       star.animate(
         [
@@ -443,18 +192,12 @@ document.addEventListener("DOMContentLoaded", function () {
           { transform: `translate(${starData.x}px, ${starData.y}px) scale(1.35)` },
           { transform: `translate(${starData.x}px, ${starData.y}px) scale(1)` }
         ],
-        {
-          duration: 180,
-          easing: "ease-out"
-        }
+        { duration: 180 }
       );
     }
 
     star.addEventListener("click", clickBurst);
-    star.addEventListener("touchstart", function (e) {
-      e.stopPropagation();
-      clickBurst();
-    }, { passive: true });
+    star.addEventListener("touchstart", clickBurst, { passive: true });
 
     state.push(starData);
   }
@@ -470,29 +213,8 @@ document.addEventListener("DOMContentLoaded", function () {
       s.x += s.vx;
       s.y += s.vy;
 
-      const friction = 0.996;
-      s.vx *= friction;
-      s.vy *= friction;
-
-      const minSpeed = isMobile ? 0.12 : 0.18;
-      if (Math.abs(s.vx) < minSpeed) s.vx = minSpeed * (s.vx < 0 ? -1 : 1);
-      if (Math.abs(s.vy) < minSpeed) s.vy = minSpeed * (s.vy < 0 ? -1 : 1);
-
-      if (s.x <= 0) {
-        s.x = 0;
-        s.vx *= -1;
-      } else if (s.x >= w - s.size) {
-        s.x = w - s.size;
-        s.vx *= -1;
-      }
-
-      if (s.y <= 0) {
-        s.y = 0;
-        s.vy *= -1;
-      } else if (s.y >= h - s.size) {
-        s.y = h - s.size;
-        s.vy *= -1;
-      }
+      if (s.x <= 0 || s.x >= w - s.size) s.vx *= -1;
+      if (s.y <= 0 || s.y >= h - s.size) s.vy *= -1;
 
       s.el.style.transform = `translate(${s.x}px, ${s.y}px)`;
     }
@@ -510,35 +232,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.addEventListener("mouseleave", () => {
     mouse.active = false;
-  });
-
-  window.addEventListener("touchstart", (e) => {
-    const touch = e.touches[0];
-    if (!touch) return;
-    mouse.x = touch.clientX;
-    mouse.y = touch.clientY;
-    mouse.active = true;
-  }, { passive: true });
-
-  window.addEventListener("touchmove", (e) => {
-    const touch = e.touches[0];
-    if (!touch) return;
-    mouse.x = touch.clientX;
-    mouse.y = touch.clientY;
-    mouse.active = true;
-  }, { passive: true });
-
-  window.addEventListener("touchend", () => {
-    mouse.active = false;
-  });
-
-  window.addEventListener("scroll", () => {
-    const logo = document.querySelector(".fixed-logo");
-    const scrollY = window.scrollY;
-    if (logo) {
-      logo.style.opacity = Math.max(0, 0.88 - scrollY / 300);
-      logo.style.transition = "opacity 0.3s ease";
-    }
   });
 
   setTimeout(() => {
