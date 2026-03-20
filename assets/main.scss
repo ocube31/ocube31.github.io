@@ -378,3 +378,17 @@ a:visited,
   opacity: 1;
   transform: translateY(-2px);
 }
+.yt-link {
+  text-decoration: none;
+  color: #888;
+  font-size: 13px;
+  letter-spacing: 2px;
+  opacity: 0.5;
+  transition: all 0.4s ease;
+}
+
+.yt-link:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  letter-spacing: 3px;
+}
