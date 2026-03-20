@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ? randomBetween(0.06, 0.18)
       : randomBetween(0.04, 0.10);
 
-    const speedFactor = (44 - Math.min(size, 44)) / 20;
+    const speedFactor = Math.pow((44 - Math.min(size, 44)) / 20, 1.6);
 
     const starData = {
       el: star,
