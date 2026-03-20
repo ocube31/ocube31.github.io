@@ -318,3 +318,40 @@ a:visited,
     height: 170px;
   }
 }
+@media (max-width: 768px) {
+  .site-header {
+    min-height: 0 !important;
+    padding: 0 !important;
+  }
+
+  .site-nav {
+    position: static !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+
+  .site-nav .menu-icon {
+    display: none !important;
+  }
+
+  .site-nav .trigger {
+    display: block !important;
+    padding-bottom: 0 !important;
+  }
+
+  .page-content {
+    padding-top: 0 !important;
+  }
+
+  .fixed-logo {
+    top: 58px !important;
+  }
+
+  .archive-title {
+    margin-top: 128px !important;
+  }
+
+  .category-menu {
+    margin-top: 14px !important;
+  }
+}
