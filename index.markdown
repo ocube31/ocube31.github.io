@@ -7,7 +7,9 @@ layout: default
 <script>
 const container = document.getElementById("floating-stars");
 
-/* ⭐ PC / 모바일 개수 분기 */
+/* 혹시 남아 있던 별들 먼저 전부 비우기 */
+container.innerHTML = "";
+
 const starCount = window.innerWidth < 768 ? 10 : 40;
 
 for (let i = 0; i < starCount; i++) {
@@ -18,7 +20,6 @@ for (let i = 0; i < starCount; i++) {
   const size = Math.random() * 30 + 30;
   star.style.width = size + "px";
   star.style.height = size + "px";
-
   star.style.left = Math.random() * 100 + "vw";
   star.style.top = Math.random() * 100 + "vh";
 
