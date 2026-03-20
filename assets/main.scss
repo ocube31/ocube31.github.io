@@ -88,3 +88,9 @@ html, body {
     transform: translateY(0px) rotate(0deg);
   }
 }
+.moving-star {
+  animation: floatStar 7s ease-in-out infinite;
+}
+.moving-star {
+  will-change: transform;
+}
