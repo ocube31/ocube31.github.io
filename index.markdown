@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const baseSpeed = isMobile
       ? randomBetween(0.10, 0.22)
-      : randomBetween(0.05, 0.12);
+      : randomBetween(0.025, 0.07);
 
     const speedFactor = (44 - Math.min(size, 44)) / 20;
 
