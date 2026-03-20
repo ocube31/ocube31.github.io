@@ -21,20 +21,20 @@ layout: default
   <a href="/category/diary">diary</a>
   <a href="/category/archive">archive</a>
   <a href="/category/food">food</a>
-</div>  
+</div>
 
 <div class="post-grid">
   {% for post in site.posts %}
     <a class="post-card" href="{{ post.url }}">
-       
-     {% if post.image %}
-  <div class="post-card-thumb">
-    <img src="{{ post.image }}" alt="">
-  </div>
-{% endif %}  
+      {% if post.image %}
+        <div class="post-card-thumb">
+          <img src="{{ post.image }}" alt="">
+        </div>
+      {% endif %}
 
       <div class="post-card-date">{{ post.date | date: "%Y.%m.%d" }}</div>
       <div class="post-card-title">{{ post.title }}</div>
+
       {% if post.excerpt %}
         <div class="post-card-excerpt">
           {{ post.excerpt | strip_html | truncate: 80 }}
@@ -46,7 +46,7 @@ layout: default
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 body {
@@ -63,8 +63,6 @@ body {
   font-family: "Cormorant Garamond", serif;
   opacity: 0.7;
 }
-
-
 
 .post-grid {
   max-width: 860px;
@@ -86,6 +84,7 @@ body {
   border: 1px solid rgba(0,0,0,0.06);
   border-radius: 16px;
   backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   transition: transform 0.25s ease, opacity 0.25s ease, border-color 0.25s ease;
 }
 
@@ -127,7 +126,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;  
+  display: block;
 }
 
 @media (max-width: 768px) {
@@ -150,7 +149,7 @@ body {
 .category-menu {
   text-align: center;
   margin-top: 20px;
-  margin-bottom: 20px;  
+  margin-bottom: 20px;
   font-size: 12px;
   letter-spacing: 2px;
 }
@@ -164,7 +163,7 @@ body {
 
 .category-menu a:hover {
   opacity: 1;
-}  
+}
 
 .site-title,
 .page-heading,
@@ -184,10 +183,15 @@ body {
 
 .moving-star {
   position: absolute;
+  left: 0;
+  top: 0;
   pointer-events: auto;
   will-change: transform, filter;
-  transition: filter 0.2s ease;
+  transition: filter 0.18s ease, opacity 0.18s ease;
   touch-action: manipulation;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 #intro {
@@ -289,29 +293,47 @@ body {
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const container = document.getElementById("floating-stars");
-  const COUNT = 43;
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const isMobile = window.innerWidth < 768;
+  const COUNT = isMobile ? 10 : 40;
   const state = [];
   const mouse = { x: -9999, y: -9999, active: false };
-  const clickSound = new Audio("assets/click.mp3");
+
+  const STAR_SRC = "{{ '/assets/star.png' | relative_url }}";
+  const CLICK_SOUND_SRC = "{{ '/assets/click.mp3' | relative_url }}";
+
+  const clickSound = new Audio(CLICK_SOUND_SRC);
+  clickSound.preload = "auto";
+  clickSound.volume = 0.35;
 
   function randomBetween(min, max) {
     return Math.random() * (max - min) + min;
   }
 
+  function playClickSound() {
+    try {
+      clickSound.currentTime = 0;
+      clickSound.play().catch(() => {});
+    } catch (e) {}
+  }
+
   function applyMouseRepel(s) {
-    if (!mouse.active) return;
+    if (!mouse.active || isMobile) return;
 
     const cx = s.x + s.size / 2;
     const cy = s.y + s.size / 2;
     const dx = cx - mouse.x;
     const dy = cy - mouse.y;
     const dist = Math.sqrt(dx * dx + dy * dy);
-    const repelRadius = 100;
+    const repelRadius = 110;
 
     if (dist > 0 && dist < repelRadius) {
       const force = (repelRadius - dist) / repelRadius;
-      s.vx += (dx / dist) * force * 0.02;
-      s.vy += (dy / dist) * force * 0.02;
+      s.vx += (dx / dist) * force * 0.035;
+      s.vy += (dy / dist) * force * 0.035;
     }
   }
 
@@ -326,13 +348,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const dx = cx - mouse.x;
     const dy = cy - mouse.y;
     const dist = Math.sqrt(dx * dx + dy * dy);
-    const glowRadius = 150;
+    const glowRadius = isMobile ? 90 : 150;
 
     if (dist < glowRadius) {
       const intensity = (glowRadius - dist) / glowRadius;
       s.el.style.filter = `
-        drop-shadow(0 0 ${20 * intensity}px rgba(100,180,255,${intensity}))
-        brightness(${1 + intensity})
+        drop-shadow(0 0 ${16 * intensity}px rgba(120, 200, 255, ${0.6 * intensity}))
+        brightness(${1 + intensity * 0.45})
       `;
     } else {
       s.el.style.filter = "";
@@ -340,35 +362,35 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function burstStars(x, y) {
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 7; i++) {
       const spark = document.createElement("img");
-      spark.src = "/assets/star.png";
+      spark.src = STAR_SRC;
       spark.className = "moving-star";
       spark.style.width = "14px";
       spark.style.height = "14px";
-      spark.style.position = "absolute";
       spark.style.pointerEvents = "none";
-      spark.style.transform = `translate(${x}px, ${y}px) scale(0.6)`;
+      spark.style.left = "0px";
+      spark.style.top = "0px";
       container.appendChild(spark);
 
       const angle = Math.random() * Math.PI * 2;
-      const distance = 40 + Math.random() * 30;
+      const distance = 36 + Math.random() * 28;
       const dx = Math.cos(angle) * distance;
       const dy = Math.sin(angle) * distance;
 
       spark.animate(
         [
           {
-            transform: `translate(${x}px, ${y}px) scale(0.6)`,
-            opacity: 0.7
+            transform: `translate(${x}px, ${y}px) scale(0.8)`,
+            opacity: 0.9
           },
           {
-            transform: `translate(${x + dx}px, ${y + dy}px) scale(0.2)`,
+            transform: `translate(${x + dx}px, ${y + dy}px) scale(0.1)`,
             opacity: 0
           }
         ],
         {
-          duration: 500,
+          duration: 480,
           easing: "ease-out",
           fill: "forwards"
         }
@@ -376,54 +398,65 @@ document.addEventListener("DOMContentLoaded", function () {
 
       setTimeout(() => {
         spark.remove();
-      }, 500);
+      }, 520);
     }
   }
 
   for (let i = 0; i < COUNT; i++) {
     const star = document.createElement("img");
-    star.src = "/assets/star.png";
+    star.src = STAR_SRC;
     star.className = "moving-star";
+    star.alt = "";
     container.appendChild(star);
 
-    star.addEventListener("click", () => {
-      clickSound.currentTime = 0;
-      clickSound.play().catch(() => {});
+    const size = isMobile
+      ? randomBetween(28, 44)
+      : randomBetween(20, 42);
 
-      const originalTransform = star.style.transform;
+    const baseSpeed = isMobile ? randomBetween(0.14, 0.32) : randomBetween(0.22, 0.55);
+    const speedFactor = (44 - Math.min(size, 44)) / 20;
+
+    const starData = {
+      el: star,
+      x: randomBetween(0, Math.max(0, window.innerWidth - size)),
+      y: randomBetween(0, Math.max(0, window.innerHeight - size)),
+      vx: baseSpeed * speedFactor * (Math.random() > 0.5 ? 1 : -1),
+      vy: baseSpeed * speedFactor * (Math.random() > 0.5 ? 1 : -1),
+      size
+    };
+
+    star.style.width = size + "px";
+    star.style.height = size + "px";
+
+    function clickBurst() {
+      playClickSound();
 
       const rect = star.getBoundingClientRect();
       const burstX = rect.left + rect.width / 2;
       const burstY = rect.top + rect.height / 2;
+
       burstStars(burstX, burstY);
 
-      star.style.transform = originalTransform + " scale(1.5)";
-      star.style.filter = "brightness(2)";
+      star.animate(
+        [
+          { transform: `translate(${starData.x}px, ${starData.y}px) scale(1)` },
+          { transform: `translate(${starData.x}px, ${starData.y}px) scale(1.35)` },
+          { transform: `translate(${starData.x}px, ${starData.y}px) scale(1)` }
+        ],
+        {
+          duration: 180,
+          easing: "ease-out"
+        }
+      );
+    }
 
-      setTimeout(() => {
-        star.style.transform = originalTransform;
-        star.style.filter = "";
-      }, 150);
-    });
+    star.addEventListener("click", clickBurst);
+    star.addEventListener("touchstart", function (e) {
+      e.stopPropagation();
+      clickBurst();
+    }, { passive: true });
 
-    const size = window.innerWidth < 768
-      ? randomBetween(28, 48)
-      : randomBetween(20, 40);
-
-    const baseSpeed = randomBetween(0.02, 0.08);
-    const speedFactor = (40 - Math.min(size, 40)) / 20;
-
-    state.push({
-      el: star,
-      x: randomBetween(0, window.innerWidth - size),
-      y: randomBetween(0, window.innerHeight - size),
-      vx: baseSpeed * speedFactor * (Math.random() > 0.5 ? 1 : -1),
-      vy: baseSpeed * speedFactor * (Math.random() > 0.5 ? 1 : -1),
-      size
-    });
-
-    star.style.width = size + "px";
-    star.style.height = size + "px";
+    state.push(starData);
   }
 
   function animate() {
@@ -434,11 +467,32 @@ document.addEventListener("DOMContentLoaded", function () {
       applyMouseRepel(s);
       applyGlow(s);
 
-      s.x += s.vx * 1;
-      s.y += s.vy * 1;
+      s.x += s.vx;
+      s.y += s.vy;
 
-      if (s.x <= 0 || s.x >= w - s.size) s.vx *= -1;
-      if (s.y <= 0 || s.y >= h - s.size) s.vy *= -1;
+      const friction = 0.996;
+      s.vx *= friction;
+      s.vy *= friction;
+
+      const minSpeed = isMobile ? 0.12 : 0.18;
+      if (Math.abs(s.vx) < minSpeed) s.vx = minSpeed * (s.vx < 0 ? -1 : 1);
+      if (Math.abs(s.vy) < minSpeed) s.vy = minSpeed * (s.vy < 0 ? -1 : 1);
+
+      if (s.x <= 0) {
+        s.x = 0;
+        s.vx *= -1;
+      } else if (s.x >= w - s.size) {
+        s.x = w - s.size;
+        s.vx *= -1;
+      }
+
+      if (s.y <= 0) {
+        s.y = 0;
+        s.vy *= -1;
+      } else if (s.y >= h - s.size) {
+        s.y = h - s.size;
+        s.vy *= -1;
+      }
 
       s.el.style.transform = `translate(${s.x}px, ${s.y}px)`;
     }
@@ -481,19 +535,18 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("scroll", () => {
     const logo = document.querySelector(".fixed-logo");
     const scrollY = window.scrollY;
-
     if (logo) {
-      logo.style.opacity = 1 - scrollY / 300;
+      logo.style.opacity = Math.max(0, 0.88 - scrollY / 300);
       logo.style.transition = "opacity 0.3s ease";
     }
   });
 
   setTimeout(() => {
-  const intro = document.getElementById("intro");
-  const stars = document.getElementById("floating-stars");
+    const intro = document.getElementById("intro");
+    const stars = document.getElementById("floating-stars");
 
-  if (intro) intro.remove();
-  if (stars) stars.style.opacity = "1";
-}, 2800);
+    if (intro) intro.remove();
+    if (stars) stars.style.opacity = "1";
+  }, 2800);
 });
 </script>
