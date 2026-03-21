@@ -555,7 +555,10 @@ a:visited,
 .calendar-page .archive-calendar {
   position: static;
   margin: 0 auto;
-  transform: none;
+
+  transform: scale(1.05);   /* 🔥 살짝 키우기 */
+  transform-origin: top center;
+
   width: min(92vw, 980px);
   max-width: 980px;
 }
