@@ -789,3 +789,19 @@ a[href="/about/"] {
     position: relative;
   }
 }
+.calendar-day.has-post {
+  position: relative;
+}
+
+.calendar-day.has-post::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ff7eb6;
+  opacity: 0.9;
+}
