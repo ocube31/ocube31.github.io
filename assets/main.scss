@@ -185,6 +185,16 @@ a:visited,
   z-index: 5;
 }
 
+@media (max-width: 768px) {
+  .archive-calendar {
+    position: static;
+    top: auto;
+    right: auto;
+    margin: 40px auto 0;
+    z-index: 2;
+  }
+}
+
 /* ===== 카드 그리드 ===== */
 .post-grid {
   max-width: 860px;
