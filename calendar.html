@@ -134,9 +134,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* intro 제거 (있으면) */
   setTimeout(() => {
-    const intro = document.getElementById("intro");
-    if (intro) intro.remove();
-  }, 2800);
+  const intro = document.getElementById("intro");
+  document.body.classList.add("loaded");
+  if (intro) intro.style.display = "none";
+}, 2800);
 
 });
 </script>
