@@ -316,8 +316,12 @@ a:visited,
   color: #c97c7c;
 }
 
-.calendar-day:hover {
-  transform: scale(1.15);
+.calendar-day .day-number {
+  transition: transform 0.2s ease;
+}
+
+.calendar-day .day-number:hover {
+  transform: scale(1.2);
 }
 
 @media (max-width: 768px) {
