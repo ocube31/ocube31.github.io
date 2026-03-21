@@ -814,3 +814,6 @@ body:not(.loaded) a[href*="youtube"] {
 a[href*="youtube"] {
   transition: opacity 0.4s ease;
 }
+body {
+  outline: 1px solid transparent;
+}
