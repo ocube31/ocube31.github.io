@@ -187,10 +187,17 @@ a:visited,
 
 @media (max-width: 768px) {
   .archive-calendar {
-    position: static;
-    top: auto;
-    right: auto;
-    margin: 40px auto 0;
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+
+    display: block;
+    width: fit-content;
+    margin: 60px auto 40px !important;
+
     z-index: 2;
     text-align: center;
   }
