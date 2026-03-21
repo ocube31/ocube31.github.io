@@ -178,30 +178,21 @@ a:visited,
   opacity: 1;
 }
 
+/* ===== 홈 미니 캘린더 ===== */
 .archive-calendar {
   position: fixed;
-  top: 100px;      /* ↓ 살짝 내림 */
-  right: 40px;     /* → 더 오른쪽 */
-
-  transform: scale(0.7);   /* 크기 줄이기 */
+  top: 100px;
+  right: 40px;
+  transform: scale(0.7);
   transform-origin: top right;
-
   z-index: 5;
-
   background: rgba(250, 248, 244, 0.65);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-
   padding: 20px 18px;
   border-radius: 16px;
   border: 1px solid rgba(180, 200, 220, 0.35);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-}
-
-.calendar-page .archive-calendar {
-  position: static;
-  margin: 0 auto;
-  transform: scale(1.6);
 }
 
 .calendar-header {
@@ -212,7 +203,6 @@ a:visited,
   color: #6b6b6b;
   opacity: 0.8;
   text-align: center;
-
   text-decoration: none;
   display: block;
   cursor: pointer;
@@ -244,84 +234,71 @@ a:visited,
   font-weight: 1000;
 }
 
+/* 홈 미니 캘린더 날짜 */
 .calendar-day {
-  position: relative;
-  box-sizing: border-box;
-
-  width: 100%;
-  min-width: 0;
-  min-height: 120px;
-  aspect-ratio: 1 / 1;
-
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 8px;
-
   font-size: 12px;
   color: #8a8a8a;
   opacity: 0.7;
-  text-align: left;
-
+  min-width: 26px;
+  min-height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   text-decoration: none;
   cursor: pointer;
-  transition: transform 0.2s ease, color 0.2s ease;
-
-  border-right: 1px solid rgba(120, 120, 120, 0.12);
-  border-bottom: 1px solid rgba(120, 120, 120, 0.12);
-  overflow: hidden;
 }
 
-.calendar-day.empty {
-  box-sizing: border-box;
-  width: 100%;
-  min-width: 0;
-  min-height: 120px;
-  aspect-ratio: 1 / 1;
-  background: transparent;
-  border-right: 1px solid rgba(120, 120, 120, 0.12);
-  border-bottom: 1px solid rgba(120, 120, 120, 0.12);
-}
-
-/* 주말 날짜 */
-.calendar-grid .calendar-day:nth-child(7n+1),
+/* 홈 미니 캘린더 주말 날짜 */
+.calendar-grid .calendar-day:nth-child(7n + 1),
 .calendar-grid .calendar-day:nth-child(7n) {
   color: #c97c7c;
+}
+
+/* 기본 날짜 숫자: 원형 없음 */
+.calendar-day .day-number {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 1;
+  color: #444;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  transition: transform 0.2s ease;
+}
+
+/* 숫자만 hover */
+.calendar-day .day-number:hover {
+  transform: scale(1.2);
 }
 
 .calendar-day.today {
   background: transparent;
 }
 
+/* 오늘 날짜만 원형 */
 .calendar-day.today .day-number {
-  display: flex;              /* 🔥 inline-flex → flex */
+  display: flex;
   align-items: center;
   justify-content: center;
-
   width: 28px;
   height: 28px;
-
-  padding: 0 !important;      /* 🔥 혹시 남아있는 padding 제거 */
-  min-width: 0 !important;    /* 🔥 남아있으면 타원됨 */
-
+  padding: 0 !important;
+  min-width: 0 !important;
   border-radius: 50%;
   background: rgba(120, 140, 160, 0.22);
-
   color: #222;
   font-weight: 700;
   line-height: 1;
 }
-.calendar-day.today:nth-child(7n+1),
+
+.calendar-day.today:nth-child(7n + 1),
 .calendar-day.today:nth-child(7n) {
   color: #c97c7c;
-}
-
-.calendar-day .day-number {
-  transition: transform 0.2s ease;
-}
-
-.calendar-day .day-number:hover {
-  transform: scale(1.2);
 }
 
 @media (max-width: 768px) {
@@ -332,18 +309,14 @@ a:visited,
     left: auto !important;
     bottom: auto !important;
     transform: none !important;
-
     display: block;
     width: fit-content;
     margin: 60px auto 40px !important;
-
     z-index: 6;
     text-align: center;
-
     background: rgba(250, 248, 244, 0.65);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-
     padding: 18px 16px;
     border-radius: 14px;
     border: 1px solid rgba(180, 200, 220, 0.35);
@@ -363,13 +336,7 @@ a:visited,
     color: #c97c7c;
     font-weight: 1000;
   }
-
-  .calendar-day:hover {
-    transform: none;
-  }
 }
-
-
 
 /* ===== 카드 그리드 ===== */
 .post-grid {
@@ -511,6 +478,7 @@ a:visited,
     height: 170px;
   }
 }
+
 @media (max-width: 768px) {
   .site-header {
     min-height: 0 !important;
@@ -548,7 +516,8 @@ a:visited,
     margin-top: 14px !important;
   }
 }
-/* 푸터 */
+
+/* ===== 푸터 ===== */
 .site-footer {
   margin-top: 120px;
   padding: 40px 0;
@@ -574,27 +543,25 @@ a:visited,
   letter-spacing: 3px;
 }
 
-/* 캘린더 전용 페이지 */
+/* ===== 캘린더 페이지 전용 포토 캘린더 ===== */
 .calendar-page {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 90vh;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding-top: 40px;
 }
 
 .calendar-page .archive-calendar {
-  transform: scale(1.6);
+  position: static;
+  margin: 0 auto;
+  transform: none;
+  width: min(92vw, 980px);
+  max-width: 980px;
 }
 
-.calendar-day {
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-/* ===== 포토 캘린더 (격자 + 큰 사이즈) ===== */
-
-.calendar-grid {
+/* 큰 달력 격자 */
+.calendar-page .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 0;
@@ -602,74 +569,85 @@ a:visited,
   border-left: 1px solid rgba(120, 120, 120, 0.12);
 }
 
-.calendar-day {
+/* 큰 날짜 칸 */
+.calendar-page .calendar-day {
   position: relative;
-  min-width: 70px;
-  min-height: 70px;
-  border-right: 1px solid rgba(120, 120, 120, 0.12);
-  border-bottom: 1px solid rgba(120, 120, 120, 0.12);
-
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 120px;
+  aspect-ratio: 1 / 1;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   padding: 8px;
-
+  font-size: 12px;
+  color: #8a8a8a;
+  opacity: 0.7;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  border-right: 1px solid rgba(120, 120, 120, 0.12);
+  border-bottom: 1px solid rgba(120, 120, 120, 0.12);
   overflow: hidden;
 }
 
-/* 캘린더 페이지에서 크게 */
-.calendar-page .calendar-day {
-  aspect-ratio: 1 / 1;
-  min-height: 120px;
+/* 빈칸 */
+.calendar-page .calendar-day.empty {
+  background: transparent;
 }
 
-/* 사진 */
-.calendar-day.has-photo {
+/* 사진 들어가는 칸 */
+.calendar-page .calendar-day.has-photo {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-/* 날짜 숫자 */
-.day-number {
+/* 일반 날짜 숫자 */
+.calendar-page .day-number {
   position: relative;
   z-index: 2;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 24px;
-  height: 24px;
   font-size: 12px;
   line-height: 1;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 0 6px;
-  border-radius: 999px;
+  color: #444;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  transition: transform 0.2s ease;
 }
 
-.calendar-day.empty {
+/* 숫자만 hover */
+.calendar-page .day-number:hover {
+  transform: scale(1.2);
+}
+
+/* 오늘 날짜 칸 자체 배경 제거 */
+.calendar-page .calendar-day.today {
   background: transparent;
 }
 
-.calendar-day.has-photo {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.calendar-day .day-number {
-  position: relative;
-  z-index: 2;
-  font-size: 12px;
-  color: #444;
-
-  /* 🔥 원형 제거 */
-  background: none;
-  border-radius: 0;
+/* 오늘 날짜만 원형 */
+.calendar-page .calendar-day.today .day-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
   padding: 0;
-}
-
-.calendar-day.today .day-number {
-  background: rgba(120, 140, 160, 0.28);
+  border-radius: 50%;
+  background: rgba(120, 140, 160, 0.22);
   color: #222;
   font-weight: 700;
+  line-height: 1;
+}
+
+/* 캘린더 페이지 주말 숫자 */
+.calendar-page .calendar-grid .calendar-day:nth-child(7n + 1),
+.calendar-page .calendar-grid .calendar-day:nth-child(7n) {
+  color: #c97c7c;
 }
