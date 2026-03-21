@@ -347,6 +347,35 @@ const month = today.getMonth();
 const date = today.getDate();
 
 console.log(year, month + 1, date); // 확인용
+
+const calendarMonth = document.getElementById("calendar-month");
+const calendarGrid = document.getElementById("calendar-grid");
+
+if (calendarMonth && calendarGrid) {
+  calendarMonth.textContent = `${year}.${month + 1}`;
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const lastDate = new Date(year, month + 1, 0).getDate();
+
+  for (let i = 0; i < firstDay; i++) {
+    const empty = document.createElement("span");
+    empty.className = "calendar-day";
+    calendarGrid.appendChild(empty);
+  }
+
+  for (let i = 1; i <= lastDate; i++) {
+    const dayEl = document.createElement("span");
+    dayEl.className = "calendar-day";
+    dayEl.textContent = i;
+
+    // ⭐ 오늘 날짜 강조
+    if (i === date) {
+      dayEl.classList.add("today");
+    }
+
+    calendarGrid.appendChild(dayEl);
+  }
+}
   
   setTimeout(() => {
     const intro = document.getElementById("intro");
