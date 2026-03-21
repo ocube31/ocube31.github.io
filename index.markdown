@@ -358,8 +358,8 @@ if (calendarMonth && calendarGrid) {
   const lastDate = new Date(year, month + 1, 0).getDate();
 
   for (let i = 0; i < firstDay; i++) {
-  const empty = document.createElement("span");
-  empty.className = "calendar-day";
+  const empty = document.createElement("div");
+  empty.className = "calendar-day empty";
   calendarGrid.appendChild(empty);
 }
 
