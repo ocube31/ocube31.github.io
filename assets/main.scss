@@ -599,3 +599,30 @@ a:visited,
   padding: 2px 6px;
   border-radius: 999px;
 }
+
+.calendar-day.empty {
+  background: transparent;
+}
+
+.calendar-day.has-photo {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.calendar-day .day-number {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #444;
+  font-size: 12px;
+}
+
+.calendar-day.today .day-number {
+  background: rgba(120, 140, 160, 0.28);
+  color: #222;
+  font-weight: 700;
+}
