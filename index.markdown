@@ -432,7 +432,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.body.classList.add("loaded"); // ⭐ 이거 추가
 
-  if (intro) intro.remove();
+  if (intro) intro.style.display = "none";
   if (stars) stars.style.opacity = "1";
 }, 2800);
 });
