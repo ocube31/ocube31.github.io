@@ -822,3 +822,9 @@ body.loaded a[href*="youtube"] {
   transform: translateY(0);
   transition-delay: 0.5s;
 }
+
+#floating-stars {
+  opacity: 1 !important;
+  z-index: 9999;
+  pointer-events: none;
+}
