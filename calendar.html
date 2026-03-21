@@ -30,80 +30,111 @@ permalink: /calendar/
 </div>
 
 <script>
-  const postsByDate = {
-    {% for post in site.posts %}
-     "{{ post.date | date: '%Y-%m-%d' }}": {
-       url: "{{ post.url }}",
-       title: {{ post.title | jsonify }},
-       image: "{{ post.image }}"
-     }{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  };
+/* 🔹 포스트 데이터 연결 */
+const postsByDate = {
+  {% for post in site.posts %}
+    "{{ post.date | date: '%Y-%m-%d' }}": {
+      url: "{{ post.url }}",
+      title: {{ post.title | jsonify }},
+      image: "{{ post.image }}"
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+};
 
-  document.addEventListener("DOMContentLoaded", function () {
+/* 🔹 현재 달 상태 */
+let current = new Date();
+
+/* 🔹 캘린더 렌더 함수 */
+function renderCalendar(dateObj) {
+  const year = dateObj.getFullYear();
+  const month = dateObj.getMonth();
+
+  const calendarMonth = document.getElementById("calendar-month");
+  const calendarGrid = document.getElementById("calendar-grid");
+
+  calendarGrid.innerHTML = "";
+
+  calendarMonth.textContent = `${year}.${month + 1}`;
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const lastDate = new Date(year, month + 1, 0).getDate();
+
+  /* 🔹 빈칸 */
+  for (let i = 0; i < firstDay; i++) {
+    const empty = document.createElement("div");
+    empty.className = "calendar-day empty";
+    calendarGrid.appendChild(empty);
+  }
+
+  /* 🔹 날짜 생성 */
+  for (let i = 1; i <= lastDate; i++) {
+    const dayEl = document.createElement("a");
+    dayEl.className = "calendar-day";
+
+    const monthStr = String(month + 1).padStart(2, "0");
+    const dayStr = String(i).padStart(2, "0");
+    const dateKey = `${year}-${monthStr}-${dayStr}`;
+
+    /* 날짜 숫자 */
+    const dayNumber = document.createElement("span");
+    dayNumber.className = "day-number";
+    dayNumber.textContent = i;
+    dayEl.appendChild(dayNumber);
+
+    /* 포스트 연결 */
+    if (postsByDate[dateKey]) {
+      dayEl.href = postsByDate[dateKey].url;
+      dayEl.classList.add("has-post");
+
+      if (postsByDate[dateKey].image) {
+        dayEl.style.backgroundImage = `url(${postsByDate[dateKey].image})`;
+        dayEl.classList.add("has-photo");
+      }
+
+      dayEl.title = postsByDate[dateKey].title;
+    } else {
+      dayEl.href = "/calendar/";
+      dayEl.classList.add("no-post");
+    }
+
+    /* 🔹 오늘 날짜 표시 */
     const now = new Date().toLocaleString("en-US", {
       timeZone: "Asia/Seoul"
     });
     const today = new Date(now);
 
-    const year = today.getFullYear();
-    const month = today.getMonth();
-    const date = today.getDate();
-
-    const calendarMonth = document.getElementById("calendar-month");
-    const calendarGrid = document.getElementById("calendar-grid");
-
-    if (calendarMonth && calendarGrid) {
-      calendarMonth.textContent = `${year}.${month + 1}`;
-
-      const firstDay = new Date(year, month, 1).getDay();
-      const lastDate = new Date(year, month + 1, 0).getDate();
-
-      for (let i = 0; i < firstDay; i++) {
-        const empty = document.createElement("div");
-        empty.className = "calendar-day empty";
-        calendarGrid.appendChild(empty);
-      }
-
-      for (let i = 1; i <= lastDate; i++) {
-        const dayEl = document.createElement("a");
-        dayEl.className = "calendar-day";
-
-        const monthStr = String(month + 1).padStart(2, "0");
-        const dayStr = String(i).padStart(2, "0");
-        const dateKey = `${year}-${monthStr}-${dayStr}`;
-
-        const dayNumber = document.createElement("span");
-        dayNumber.className = "day-number";
-        dayNumber.textContent = i;
-        dayEl.appendChild(dayNumber);
-
-        if (postsByDate[dateKey]) {
-          dayEl.href = postsByDate[dateKey].url;
-          dayEl.classList.add("has-post");
-          dayEl.title = postsByDate[dateKey].title;
-
-        if (postsByDate[dateKey].image) {
-          dayEl.style.backgroundImage = `url(${postsByDate[dateKey].image})`;
-          dayEl.classList.add("has-photo");
-        }
-          
-        } else {
-          dayEl.href = "/calendar/";
-          dayEl.classList.add("no-post");
-        }
-
-        if (i === date) {
-          dayEl.classList.add("today");
-        }
-
-        calendarGrid.appendChild(dayEl);
-      }
+    if (
+      i === today.getDate() &&
+      month === today.getMonth() &&
+      year === today.getFullYear()
+    ) {
+      dayEl.classList.add("today");
     }
 
-    setTimeout(() => {
-      const intro = document.getElementById("intro");
-      if (intro) intro.remove();
-    }, 2800);
+    calendarGrid.appendChild(dayEl);
+  }
+}
+
+/* 🔹 초기 실행 + 버튼 연결 */
+document.addEventListener("DOMContentLoaded", function () {
+
+  renderCalendar(current);
+
+  document.getElementById("prev-month").addEventListener("click", () => {
+    current.setMonth(current.getMonth() - 1);
+    renderCalendar(current);
   });
+
+  document.getElementById("next-month").addEventListener("click", () => {
+    current.setMonth(current.getMonth() + 1);
+    renderCalendar(current);
+  });
+
+  /* intro 제거 (있으면) */
+  setTimeout(() => {
+    const intro = document.getElementById("intro");
+    if (intro) intro.remove();
+  }, 2800);
+
+});
 </script>
