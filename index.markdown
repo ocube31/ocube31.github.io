@@ -322,6 +322,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+// 🇰🇷 한국 시간 기준
+const now = new Date().toLocaleString("en-US", {
+  timeZone: "Asia/Seoul"
+});
+const today = new Date(now);
+
+const year = today.getFullYear();
+const month = today.getMonth();
+const date = today.getDate();
+
+console.log(year, month + 1, date); // 확인용
+  
   setTimeout(() => {
     const intro = document.getElementById("intro");
     const stars = document.getElementById("floating-stars");
