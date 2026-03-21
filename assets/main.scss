@@ -31,12 +31,14 @@ a:visited,
   position: fixed;
   inset: 0;
   overflow: hidden;
-  z-index: 9998;
-  opacity: 1 !important;
+  z-index: 1;
+  opacity: 0;
   transition: opacity 0.8s ease;
   pointer-events: none;
 }
-
+body.loaded #floating-stars {
+  opacity: 1;
+}
 .moving-star {
   position: absolute;
   left: 0;
