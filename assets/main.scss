@@ -294,19 +294,23 @@ a:visited,
 }
 
 .calendar-day.today .day-number {
-  display: inline-flex;
+  display: flex;              /* 🔥 inline-flex → flex */
   align-items: center;
   justify-content: center;
+
   width: 28px;
   height: 28px;
-  padding: 0px;
+
+  padding: 0 !important;      /* 🔥 혹시 남아있는 padding 제거 */
+  min-width: 0 !important;    /* 🔥 남아있으면 타원됨 */
+
   border-radius: 50%;
   background: rgba(120, 140, 160, 0.22);
+
   color: #222;
   font-weight: 700;
   line-height: 1;
 }
-
 .calendar-day.today:nth-child(7n+1),
 .calendar-day.today:nth-child(7n) {
   color: #c97c7c;
@@ -651,12 +655,13 @@ a:visited,
 .calendar-day .day-number {
   position: relative;
   z-index: 2;
-  display: inline-block;
-  padding: 2px 6px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.72);
-  color: #444;
   font-size: 12px;
+  color: #444;
+
+  /* 🔥 원형 제거 */
+  background: none;
+  border-radius: 0;
+  padding: 0;
 }
 
 .calendar-day.today .day-number {
