@@ -194,6 +194,12 @@ a:visited,
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
+.calendar-page .archive-calendar {
+  position: static;
+  margin: 0 auto;
+  transform: scale(1.6);
+}
+
 .calendar-header {
   margin-bottom: 14px;
   font-family: "Cormorant Garamond", serif;
