@@ -697,6 +697,18 @@ a:visited,
   filter: brightness(0.95) contrast(1.05);
 }
 
+.calendar-day.has-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.35),
+    rgba(0, 0, 0, 0.05)
+  );
+  z-index: 1;
+}
+
 @media (max-width: 768px) {
   .calendar-page {
     padding-top: 20px !important;
