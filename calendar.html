@@ -1,0 +1,63 @@
+---
+layout: default
+title: Calendar
+permalink: /calendar/
+---
+
+<div class="calendar-page">
+  <div class="archive-calendar">
+    <a href="/calendar/" class="calendar-header" id="calendar-month"></a>
+    <div class="calendar-weekdays">
+      <span>S</span>
+      <span>M</span>
+      <span>T</span>
+      <span>W</span>
+      <span>T</span>
+      <span>F</span>
+      <span>S</span>
+    </div>
+    <div class="calendar-grid" id="calendar-grid"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const now = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Seoul"
+  });
+  const today = new Date(now);
+
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  const date = today.getDate();
+
+  const calendarMonth = document.getElementById("calendar-month");
+  const calendarGrid = document.getElementById("calendar-grid");
+
+  if (calendarMonth && calendarGrid) {
+    calendarMonth.textContent = `${year}.${month + 1}`;
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
+
+    for (let i = 0; i < firstDay; i++) {
+      const empty = document.createElement("span");
+      empty.className = "calendar-day";
+      calendarGrid.appendChild(empty);
+    }
+
+    for (let i = 1; i <= lastDate; i++) {
+      const dayEl = document.createElement("a");
+      dayEl.className = "calendar-day";
+      dayEl.textContent = i;
+      dayEl.href = "/calendar/";
+
+      if (i === date) {
+        dayEl.classList.add("today");
+      }
+
+      calendarGrid.appendChild(dayEl);
+    }
+  }
+});
+</script>
