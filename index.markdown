@@ -427,17 +427,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   setTimeout(() => {
-    const intro = document.getElementById("intro");
-    const stars = document.getElementById("floating-stars");
+  const intro = document.getElementById("intro");
+  const stars = document.getElementById("floating-stars");
 
-    if (intro) intro.remove();
-    if (stars) stars.style.opacity = "1";
-  }, 2800);
-});
-</script>
+  document.body.classList.add("loaded"); // ⭐ 이거 추가
 
-<script>
-window.addEventListener('load', function() {
-  document.body.classList.add('loaded');
+  if (intro) intro.remove();
+  if (stars) stars.style.opacity = "1";
+}, 2800);
 });
-</script>
+</script>  
