@@ -54,9 +54,14 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = 1; i <= lastDate; i++) {
       const dayEl = document.createElement("a");
       dayEl.className = "calendar-day";
-      dayEl.textContent = i;
-      dayEl.href = "/calendar/";
 
+      const dayNumber = document.createElement("span");
+      dayNumber.className = "day-number";
+      dayNumber.textContent = i;
+      dayEl.appendChild(dayNumber);
+      
+      dayEl.href = "/calendar/";
+      
       if (i === date) {
         dayEl.classList.add("today");
       }
