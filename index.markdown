@@ -23,6 +23,20 @@ layout: default
   <a href="/category/food">food</a>
 </div>
 
+<div class="archive-calendar">
+  <div class="calendar-header" id="calendar-month"></div>
+  <div class="calendar-weekdays">
+    <span>S</span>
+    <span>M</span>
+    <span>T</span>
+    <span>W</span>
+    <span>T</span>
+    <span>F</span>
+    <span>S</span>
+  </div>
+  <div class="calendar-grid" id="calendar-grid"></div>
+</div>
+
 <div class="post-grid">
   {% for post in site.posts %}
     <a class="post-card" href="{{ post.url }}">
