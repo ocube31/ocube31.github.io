@@ -45,7 +45,12 @@ layout: default
 </div>
 
 <div class="archive-calendar">
-  <a href="/calendar/" class="calendar-header" id="calendar-month"></a>
+  <div class="calendar-header">
+    <button id="mini-prev-month">‹</button>
+    <span id="mini-calendar-month"></span>
+    <button id="mini-next-month">›</button>
+  </div>
+
   <div class="calendar-weekdays">
     <span>S</span>
     <span>M</span>
@@ -55,7 +60,8 @@ layout: default
     <span>F</span>
     <span>S</span>
   </div>
-  <div class="calendar-grid" id="calendar-grid"></div>
+
+  <div class="calendar-grid" id="mini-calendar-grid"></div>
 </div>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,6 +70,16 @@ layout: default
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+  const postsByDate = {
+    {% for post in site.posts %}
+      "{{ post.date | date: '%Y-%m-%d' }}": {
+        url: "{{ post.url }}",
+        title: {{ post.title | jsonify }},
+        image: "{{ post.image }}"
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  };
+
   const container = document.getElementById("floating-stars");
   if (!container) return;
 
@@ -205,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function () {
       vy: baseSpeed * speedFactor * (Math.random() > 0.5 ? 1 : -1),
       size,
       angle: randomBetween(0, 360),
-      spin: randomBetween(-0.05, 0.05)   
+      spin: randomBetween(-0.05, 0.05)
     };
 
     if (isMobile) {
@@ -263,8 +279,8 @@ document.addEventListener("DOMContentLoaded", function () {
       s.x += s.vx * (isMobile ? 0.45 : 0.75);
       s.y += s.vy * (isMobile ? 0.45 : 0.75);
 
-     s.vx *= isMobile ? 0.88 : 0.94;
-     s.vy *= isMobile ? 0.88 : 0.94;
+      s.vx *= isMobile ? 0.88 : 0.94;
+      s.vy *= isMobile ? 0.88 : 0.94;
 
       const minSpeed = isMobile ? 0.08 : 0.03;
       if (Math.abs(s.vx) < minSpeed) s.vx = minSpeed * (s.vx < 0 ? -1 : 1);
@@ -287,9 +303,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       s.angle += s.spin;
-
-      s.el.style.transform =
-      `translate(${s.x}px, ${s.y}px) rotate(${s.angle}deg)`;
+      s.el.style.transform = `translate(${s.x}px, ${s.y}px) rotate(${s.angle}deg)`;
     }
 
     requestAnimationFrame(animate);
@@ -336,49 +350,80 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-// 🇰🇷 한국 시간 기준
-const now = new Date().toLocaleString("en-US", {
-  timeZone: "Asia/Seoul"
-});
-const today = new Date(now);
+  const now = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Seoul"
+  });
+  const today = new Date(now);
+  const date = today.getDate();
 
-const year = today.getFullYear();
-const month = today.getMonth();
-const date = today.getDate();
+  let miniCurrent = new Date();
 
-console.log(year, month + 1, date); // 확인용
+  function renderMiniCalendar(dateObj) {
+    const year = dateObj.getFullYear();
+    const month = dateObj.getMonth();
 
-const calendarMonth = document.getElementById("calendar-month");
-const calendarGrid = document.getElementById("calendar-grid");
+    const calendarMonth = document.getElementById("mini-calendar-month");
+    const calendarGrid = document.getElementById("mini-calendar-grid");
 
-if (calendarMonth && calendarGrid) {
-  calendarMonth.textContent = `${year}.${month + 1}`;
+    if (!calendarMonth || !calendarGrid) return;
 
-  const firstDay = new Date(year, month, 1).getDay();
-  const lastDate = new Date(year, month + 1, 0).getDate();
+    calendarGrid.innerHTML = "";
+    calendarMonth.textContent = `${year}.${month + 1}`;
 
-  for (let i = 0; i < firstDay; i++) {
-  const empty = document.createElement("div");
-  empty.className = "calendar-day empty";
-  calendarGrid.appendChild(empty);
-}
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
 
-for (let i = 1; i <= lastDate; i++) {
-  const dayEl = document.createElement("a"); // ⭐ span → a
-  dayEl.className = "calendar-day";
-  dayEl.textContent = i;
+    for (let i = 0; i < firstDay; i++) {
+      const empty = document.createElement("span");
+      empty.className = "calendar-day empty";
+      calendarGrid.appendChild(empty);
+    }
 
-  dayEl.href = "/calendar/"; // ⭐ 링크 추가
+    for (let i = 1; i <= lastDate; i++) {
+      const dayEl = document.createElement("a");
+      dayEl.className = "calendar-day";
 
-  // ⭐ 오늘 날짜 강조
-  if (i === date) {
-    dayEl.classList.add("today");
+      const monthStr = String(month + 1).padStart(2, "0");
+      const dayStr = String(i).padStart(2, "0");
+      const dateKey = `${year}-${monthStr}-${dayStr}`;
+
+      const dayNumber = document.createElement("span");
+      dayNumber.className = "day-number";
+      dayNumber.textContent = i;
+      dayEl.appendChild(dayNumber);
+
+      if (postsByDate[dateKey]) {
+        dayEl.href = postsByDate[dateKey].url;
+        dayEl.classList.add("has-post");
+      } else {
+        dayEl.href = "/calendar/";
+        dayEl.classList.add("no-post");
+      }
+
+      if (
+        i === date &&
+        month === today.getMonth() &&
+        year === today.getFullYear()
+      ) {
+        dayEl.classList.add("today");
+      }
+
+      calendarGrid.appendChild(dayEl);
+    }
   }
 
-    calendarGrid.appendChild(dayEl);
-  }
-}
-  
+  renderMiniCalendar(miniCurrent);
+
+  document.getElementById("mini-prev-month").addEventListener("click", () => {
+    miniCurrent.setMonth(miniCurrent.getMonth() - 1);
+    renderMiniCalendar(miniCurrent);
+  });
+
+  document.getElementById("mini-next-month").addEventListener("click", () => {
+    miniCurrent.setMonth(miniCurrent.getMonth() + 1);
+    renderMiniCalendar(miniCurrent);
+  });
+
   setTimeout(() => {
     const intro = document.getElementById("intro");
     const stars = document.getElementById("floating-stars");
