@@ -46,10 +46,10 @@ layout: default
 
 <div class="archive-calendar">
   <div class="calendar-header">
-    <button id="mini-prev-month">‹</button>
-    <span id="mini-calendar-month"></span>
-    <button id="mini-next-month">›</button>
-  </div>
+  <button type="button" id="mini-prev-month">‹</button>
+  <span id="mini-calendar-month"></span>
+  <button type="button" id="mini-next-month">›</button>
+</div>
 
   <div class="calendar-weekdays">
     <span>S</span>
