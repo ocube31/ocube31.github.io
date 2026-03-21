@@ -659,3 +659,15 @@ a:visited,
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+.calendar-day.has-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.calendar-day .day-number {
+  position: relative;
+  z-index: 2;
+}
