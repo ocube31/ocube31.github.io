@@ -9,9 +9,11 @@ layout: default
   ‧̍̊˙· 𓆝.° ｡˚𓆛˚｡ °.𓆞 ·˙‧̍̊
 </div>
 
-<div class="fixed-logo">
-  ˏ 𓏧 𓏲 𓏲 𓏲 𓏲 𓋒𓏲 𓏲 𓏲 𓏲 𓏧 ˎ<br>
-  ‧̍̊˙· 𓆝.° ｡˚𓆛˚｡ °.𓆞 ·˙‧̍̊
+<div id="intro">
+  <div class="intro-text">
+    ˏ 𓏧 𓏲 𓏲 𓏲 𓋒𓏲 𓏲 𓏲 𓏲 𓏧 ˎ<br>
+    ‧̍̊˙· 𓆝.° ｡˚𓆛˚｡ °.𓆞 ·˙‧̍̊
+  </div>
 </div>
 
 <h2 class="archive-title">0ryu archive</h2>
