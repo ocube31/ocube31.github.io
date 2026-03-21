@@ -301,8 +301,16 @@ a:visited,
   color: #c97c7c;
 }
 
-@media (max-width: 768px) {
-  .archive-calendar {
+ @media (max-width: 768px) {
+
+  /* 🔥 날짜칸 정사각형 */
+  .calendar-page .calendar-day {
+    aspect-ratio: 1 / 1 !important;
+    min-height: unset !important;
+  }
+
+  /* 🔥 캘린더 페이지에만 적용 */
+  .calendar-page .archive-calendar {
     position: relative !important;
     top: auto !important;
     right: auto !important;
@@ -323,21 +331,23 @@ a:visited,
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   }
 
-  .calendar-header,
-  .calendar-weekdays,
-  .calendar-grid,
-  .calendar-day {
+  /* 🔥 z-index 안정화 */
+  .calendar-page .calendar-header,
+  .calendar-page .calendar-weekdays,
+  .calendar-page .calendar-grid,
+  .calendar-page .calendar-day {
     position: relative;
     z-index: 6;
   }
 
-  .calendar-weekdays span:first-child,
-  .calendar-weekdays span:last-child {
+  /* 🔥 주말 색상 유지 */
+  .calendar-page .calendar-weekdays span:first-child,
+  .calendar-page .calendar-weekdays span:last-child {
     color: #c97c7c;
     font-weight: 1000;
   }
-}
 
+}
 /* ===== 카드 그리드 ===== */
 .post-grid {
   max-width: 860px;
