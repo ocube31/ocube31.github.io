@@ -806,11 +806,11 @@ a[href="/about/"] {
   opacity: 0.9;
 }
 
-body:not(.loaded) .youtube {
+body:not(.loaded) a[href*="youtube"] {
   opacity: 0;
   pointer-events: none;
 }
 
-.youtube {
+a[href*="youtube"] {
   transition: opacity 0.4s ease;
 }
