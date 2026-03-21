@@ -805,3 +805,12 @@ a[href="/about/"] {
   background: #ff7eb6;
   opacity: 0.9;
 }
+
+body:not(.loaded) .youtube {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.youtube {
+  transition: opacity 0.4s ease;
+}
