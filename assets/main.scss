@@ -63,7 +63,7 @@ a:visited,
 #intro {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 9997;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,7 +71,6 @@ a:visited,
   font-size: 14px;
   line-height: 1.8;
   letter-spacing: 2px;
-  opacity: 0;
   pointer-events: none;
   background: transparent;
   font-family:
@@ -79,7 +78,19 @@ a:visited,
     "Apple SD Gothic Neo",
     "Noto Sans Symbols",
     serif;
+}
+
+#intro .intro-text {
+  position: relative;
+  z-index: 10000;
+  opacity: 0;
   animation: introFlow 2.8s ease forwards;
+}
+
+#floating-stars {
+  opacity: 1 !important;
+  z-index: 9998 !important;
+  pointer-events: none;
 }
 
 @keyframes introFlow {
