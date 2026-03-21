@@ -761,3 +761,8 @@ a:visited,
   font-weight: 600;
   color: #ff7eb6;
 }
+
+a[href="/about"],
+a[href="/about/"] {
+  display: none;
+}
