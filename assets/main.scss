@@ -551,3 +551,51 @@ a:visited,
   cursor: pointer;
   transition: transform 0.2s ease;
 }
+
+/* ===== 포토 캘린더 (격자 + 큰 사이즈) ===== */
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(120, 120, 120, 0.12);
+  border-left: 1px solid rgba(120, 120, 120, 0.12);
+}
+
+.calendar-day {
+  position: relative;
+  min-width: 70px;
+  min-height: 70px;
+  border-right: 1px solid rgba(120, 120, 120, 0.12);
+  border-bottom: 1px solid rgba(120, 120, 120, 0.12);
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 8px;
+
+  overflow: hidden;
+}
+
+/* 캘린더 페이지에서 크게 */
+.calendar-page .calendar-day {
+  aspect-ratio: 1 / 1;
+  min-height: 120px;
+}
+
+/* 사진 */
+.calendar-day.has-photo {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 날짜 숫자 */
+.day-number {
+  position: relative;
+  z-index: 2;
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 2px 6px;
+  border-radius: 999px;
+}
