@@ -292,6 +292,12 @@ a:visited,
     position: relative;
     z-index: 6;
   }
+
+  .calendar-weekdays span:first-child,
+  .calendar-weekdays span:last-child {
+  color: #c97c7c;
+  font-weight: 500;
+ }
 }
 
 @media (max-width: 768px) {
