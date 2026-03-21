@@ -525,3 +525,13 @@ a:visited,
   transform: translateY(-2px);
   letter-spacing: 3px;
 }
+.calendar-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.calendar-page .archive-calendar {
+  transform: scale(1.6);
+}
