@@ -671,3 +671,12 @@ a:visited,
   position: relative;
   z-index: 2;
 }
+
+.calendar-day.has-photo {
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.calendar-day.has-photo:hover {
+  transform: scale(1.06);
+  filter: brightness(0.95);
+}
