@@ -6,4 +6,4 @@ categories: [diary]
 image: /assets/img/1.jpg
 ---
 
-블로그를 만들었습니다.
+***TEST**
