@@ -267,12 +267,20 @@ a:visited,
 }
 
 .calendar-day.today {
+  background: transparent;
+}
+
+.calendar-day.today .day-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 999px;
   background: rgba(120, 140, 160, 0.22);
-  border-radius: 50%;
   color: #222;
-  font-weight: 600;
-  width: 26px;
-  height: 26px;
+  font-weight: 700;
 }
 
 .calendar-day.today:nth-child(7n+1),
