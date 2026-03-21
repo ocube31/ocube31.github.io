@@ -45,7 +45,7 @@ layout: default
 </div>
 
 <div class="archive-calendar">
-  <div class="calendar-header" id="calendar-month"></div>
+  <a href="/calendar/" class="calendar-header" id="calendar-month"></a>
   <div class="calendar-weekdays">
     <span>S</span>
     <span>M</span>
@@ -358,20 +358,22 @@ if (calendarMonth && calendarGrid) {
   const lastDate = new Date(year, month + 1, 0).getDate();
 
   for (let i = 0; i < firstDay; i++) {
-    const empty = document.createElement("span");
-    empty.className = "calendar-day";
-    calendarGrid.appendChild(empty);
+  const empty = document.createElement("span");
+  empty.className = "calendar-day";
+  calendarGrid.appendChild(empty);
+}
+
+for (let i = 1; i <= lastDate; i++) {
+  const dayEl = document.createElement("a"); // ⭐ span → a
+  dayEl.className = "calendar-day";
+  dayEl.textContent = i;
+
+  dayEl.href = "/calendar/"; // ⭐ 링크 추가
+
+  // ⭐ 오늘 날짜 강조
+  if (i === date) {
+    dayEl.classList.add("today");
   }
-
-  for (let i = 1; i <= lastDate; i++) {
-    const dayEl = document.createElement("span");
-    dayEl.className = "calendar-day";
-    dayEl.textContent = i;
-
-    // ⭐ 오늘 날짜 강조
-    if (i === date) {
-      dayEl.classList.add("today");
-    }
 
     calendarGrid.appendChild(dayEl);
   }
