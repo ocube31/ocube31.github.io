@@ -767,3 +767,7 @@ body.loaded a[href*="youtube"] {
   transform: translateY(0);
   transition-delay: 0.5s;
 }
+
+.calendar-page .calendar-day.has-post::after {
+  display: none;
+}
