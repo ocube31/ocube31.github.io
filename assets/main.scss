@@ -297,10 +297,10 @@ a:visited,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 28px;
+  width: 28px;
   height: 28px;
-  padding: 0 8px;
-  border-radius: 999px;
+  padding: 0px;
+  border-radius: 50%;
   background: rgba(120, 140, 160, 0.22);
   color: #222;
   font-weight: 700;
