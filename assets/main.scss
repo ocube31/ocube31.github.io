@@ -181,9 +181,9 @@ a:visited,
 .archive-calendar {
   position: fixed;
   top: 100px;      /* ↓ 살짝 내림 */
-  right: 80px;     /* → 더 오른쪽 */
+  right: 40px;     /* → 더 오른쪽 */
 
-  transform: scale(0.9);   /* 크기 줄이기 */
+  transform: scale(0.7);   /* 크기 줄이기 */
   transform-origin: top right;
 
   z-index: 5;
