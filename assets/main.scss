@@ -691,6 +691,12 @@ a:visited,
   filter: brightness(0.95);
 }
 
+.calendar-day.has-photo {
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.95) contrast(1.05);
+}
+
 @media (max-width: 768px) {
   .calendar-page {
     padding-top: 20px !important;
