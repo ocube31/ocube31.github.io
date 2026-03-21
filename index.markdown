@@ -433,3 +433,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }, 2800);
 });
 </script>
+
+<script>
+window.addEventListener('load', function() {
+  document.body.classList.add('loaded');
+});
+</script>
