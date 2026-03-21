@@ -180,8 +180,12 @@ a:visited,
 
 .archive-calendar {
   position: fixed;
-  top: 80px;
-  right: 150px;
+  top: 100px;      /* ↓ 살짝 내림 */
+  right: 80px;     /* → 더 오른쪽 */
+
+  transform: scale(0.9);   /* 크기 줄이기 */
+  transform-origin: top right;
+
   z-index: 5;
 
   background: rgba(250, 248, 244, 0.65);
