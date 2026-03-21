@@ -178,6 +178,13 @@ a:visited,
   opacity: 1;
 }
 
+.archive-calendar {
+  position: fixed;
+  top: 60px;
+  right: 50px;
+  z-index: 5;
+}
+
 /* ===== 카드 그리드 ===== */
 .post-grid {
   max-width: 860px;
