@@ -32,8 +32,8 @@ a:visited,
   position: fixed;
   inset: 0;
   overflow: hidden;
-  z-index: 0;
-  opacity: 0;
+  z-index: 9998;
+  opacity: 1 !important;
   transition: opacity 0.8s ease;
   pointer-events: none;
 }
@@ -85,12 +85,6 @@ a:visited,
   z-index: 10000;
   opacity: 0;
   animation: introFlow 2.8s ease forwards;
-}
-
-#floating-stars {
-  opacity: 1 !important;
-  z-index: 9998 !important;
-  pointer-events: none;
 }
 
 @keyframes introFlow {
@@ -266,7 +260,7 @@ a:visited,
   color: #c97c7c;
 }
 
-/* 기본 날짜 숫자: 원형 없음 */
+/* 기본 날짜 숫자 */
 .calendar-day .day-number {
   position: relative;
   z-index: 2;
@@ -312,53 +306,6 @@ a:visited,
   color: #c97c7c;
 }
 
- @media (max-width: 768px) {
-
-  /* 🔥 날짜칸 정사각형 */
-  .calendar-page .calendar-day {
-    aspect-ratio: 1 / 1 !important;
-    min-height: unset !important;
-  }
-
-  /* 🔥 캘린더 페이지에만 적용 */
-  .calendar-page .archive-calendar {
-    position: relative !important;
-    top: auto !important;
-    right: auto !important;
-    left: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-    display: block;
-    width: fit-content;
-    margin: 60px auto 40px !important;
-    z-index: 6;
-    text-align: center;
-    background: rgba(250, 248, 244, 0.65);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 18px 16px;
-    border-radius: 14px;
-    border: 1px solid rgba(180, 200, 220, 0.35);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  }
-
-  /* 🔥 z-index 안정화 */
-  .calendar-page .calendar-header,
-  .calendar-page .calendar-weekdays,
-  .calendar-page .calendar-grid,
-  .calendar-page .calendar-day {
-    position: relative;
-    z-index: 6;
-  }
-
-  /* 🔥 주말 색상 유지 */
-  .calendar-page .calendar-weekdays span:first-child,
-  .calendar-page .calendar-weekdays span:last-child {
-    color: #c97c7c;
-    font-weight: 1000;
-  }
-
-}
 /* ===== 카드 그리드 ===== */
 .post-grid {
   max-width: 860px;
@@ -538,6 +485,34 @@ a:visited,
   }
 }
 
+/* 홈 미니 캘린더 모바일 */
+@media (max-width: 768px) {
+  .archive-calendar {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: fit-content;
+    max-width: calc(100vw - 28px);
+    margin: 28px auto 36px !important;
+    display: block;
+    z-index: 1 !important;
+  }
+
+  .archive-calendar .calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .archive-calendar .calendar-grid {
+    position: relative;
+  }
+}
+
 /* ===== 푸터 ===== */
 .site-footer {
   margin-top: 120px;
@@ -576,10 +551,8 @@ a:visited,
 .calendar-page .archive-calendar {
   position: static;
   margin: 0 auto;
-
-  transform: scale(1.05);   /* 🔥 살짝 키우기 */
+  transform: scale(1.05);
   transform-origin: top center;
-
   width: min(92vw, 980px);
   max-width: 980px;
 }
@@ -675,6 +648,7 @@ a:visited,
 .calendar-page .calendar-grid .calendar-day:nth-child(7n) {
   color: #c97c7c;
 }
+
 .calendar-page .calendar-day.has-post .day-number {
   font-weight: 700;
   text-decoration: underline;
@@ -688,24 +662,16 @@ a:visited,
   background: rgba(255, 255, 255, 0.25);
 }
 
-.calendar-day .day-number {
-  position: relative;
-  z-index: 2;
-}
-
 .calendar-day.has-photo {
   transition: transform 0.5s ease, filter 0.5s ease;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.95) contrast(1.05);
 }
 
 .calendar-day.has-photo:hover {
   transform: scale(1.06);
   filter: brightness(0.95);
-}
-
-.calendar-day.has-photo {
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.95) contrast(1.05);
 }
 
 .calendar-day.has-photo::before {
@@ -763,45 +729,11 @@ a:visited,
   }
 }
 
-.calendar-day.has-post {
-  font-weight: 600;
-  color: #ff7eb6;
-}
-
-a[href="/about"],
-a[href="/about/"] {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .archive-calendar {
-    position: static !important;
-    top: auto !important;
-    right: auto !important;
-    left: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-
-    width: fit-content;
-    max-width: calc(100vw - 28px);
-    margin: 28px auto 36px !important;
-    display: block;
-    z-index: 1 !important;
-  }
-
-  .archive-calendar .calendar-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .archive-calendar .calendar-grid {
-    position: relative;
-  }
-}
+/* 글 있는 날짜 도트 */
 .calendar-day.has-post {
   position: relative;
+  font-weight: 600;
+  color: #ff7eb6;
 }
 
 .calendar-day.has-post::after {
@@ -817,6 +749,7 @@ a[href="/about/"] {
   opacity: 0.9;
 }
 
+/* 유튜브 링크 로딩 후 등장 */
 body:not(.loaded) a[href*="youtube"] {
   opacity: 0;
   pointer-events: none;
@@ -832,14 +765,4 @@ body.loaded a[href*="youtube"] {
   opacity: 1;
   transform: translateY(0);
   transition-delay: 0.5s;
-}
-
-#floating-stars {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  z-index: 9998;
-  opacity: 1 !important;
-  transition: opacity 0.8s ease;
-  pointer-events: none;
 }
