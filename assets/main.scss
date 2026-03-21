@@ -761,3 +761,31 @@ a[href="/about"],
 a[href="/about/"] {
   display: none;
 }
+
+@media (max-width: 768px) {
+  .archive-calendar {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+
+    width: fit-content;
+    max-width: calc(100vw - 28px);
+    margin: 28px auto 36px !important;
+    display: block;
+    z-index: 1 !important;
+  }
+
+  .archive-calendar .calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .archive-calendar .calendar-grid {
+    position: relative;
+  }
+}
