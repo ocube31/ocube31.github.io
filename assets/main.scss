@@ -236,6 +236,26 @@ a:visited,
   text-align: center;
 }
 
+/* ===== 주말 컬러 (빈티지 레드) ===== */
+
+/* 요일 */
+.calendar-weekdays span:first-child {
+  color: #c97c7c;
+}
+
+.calendar-weekdays span:last-child {
+  color: #c97c7c;
+}
+
+/* 날짜 (더 정확한 선택자) */
+.calendar-grid .calendar-day:nth-child(7n+1) {
+  color: #c97c7c;
+}
+
+.calendar-grid .calendar-day:nth-child(7n) {
+  color: #c97c7c;
+}
+
 .calendar-day.today {
   background: rgba(120, 140, 160, 0.22);
   border-radius: 50%;
@@ -243,6 +263,11 @@ a:visited,
   font-weight: 600;
   width: 26px;
   height: 26px;
+}
+
+.calendar-day.today:nth-child(7n+1),
+.calendar-day.today:nth-child(7n) {
+  color: #c97c7c;
 }
 
 @media (max-width: 768px) {
