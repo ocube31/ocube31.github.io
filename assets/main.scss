@@ -202,6 +202,10 @@ a:visited,
   color: #6b6b6b;
   opacity: 0.8;
   text-align: center;
+
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
 }
 
 .calendar-weekdays,
@@ -223,6 +227,13 @@ a:visited,
   font-weight: 500;
 }
 
+/* 주말 요일 */
+.calendar-weekdays span:first-child,
+.calendar-weekdays span:last-child {
+  color: #c97c7c;
+  font-weight: 1000;
+}
+
 .calendar-day {
   font-size: 12px;
   color: #8a8a8a;
@@ -233,16 +244,13 @@ a:visited,
   align-items: center;
   justify-content: center;
   text-align: center;
+
+  text-decoration: none;
+  cursor: pointer;
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
-/* ===== 주말 컬러 (빈티지 레드) ===== */
-
-.calendar-weekdays span:first-child,
-.calendar-weekdays span:last-child {
-  color: #c97c7c;
-}
-
+/* 주말 날짜 */
 .calendar-grid .calendar-day:nth-child(7n+1),
 .calendar-grid .calendar-day:nth-child(7n) {
   color: #c97c7c;
@@ -310,6 +318,8 @@ a:visited,
     transform: none;
   }
 }
+
+
 
 /* ===== 카드 그리드 ===== */
 .post-grid {
@@ -488,6 +498,7 @@ a:visited,
     margin-top: 14px !important;
   }
 }
+/* 푸터 */
 .site-footer {
   margin-top: 120px;
   padding: 40px 0;
@@ -498,19 +509,6 @@ a:visited,
   text-align: center;
 }
 
-.yt-link {
-  text-decoration: none;
-  color: #777;
-  font-size: 13px;
-  letter-spacing: 2px;
-  opacity: 0.6;
-  transition: all 0.3s ease;
-}
-
-.yt-link:hover {
-  opacity: 1;
-  transform: translateY(-2px);
-}
 .yt-link {
   text-decoration: none;
   color: #888;
@@ -525,6 +523,8 @@ a:visited,
   transform: translateY(-2px);
   letter-spacing: 3px;
 }
+
+/* 캘린더 전용 페이지 */
 .calendar-page {
   display: flex;
   justify-content: center;
@@ -534,4 +534,10 @@ a:visited,
 
 .calendar-page .archive-calendar {
   transform: scale(1.6);
+}
+
+.calendar-day {
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
