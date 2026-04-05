@@ -31,14 +31,16 @@ a:visited,
   position: fixed;
   inset: 0;
   overflow: hidden;
-  z-index: 1;
+  z-index: 0;
   opacity: 0;
   transition: opacity 0.8s ease;
   pointer-events: none;
 }
+
 body.loaded #floating-stars {
   opacity: 1;
 }
+
 .moving-star {
   position: absolute;
   left: 0;
@@ -50,14 +52,6 @@ body.loaded #floating-stars {
   object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
-}
-
-/* 콘텐츠를 별 위로 */
-.site-header,
-.page-content,
-.site-footer {
-  position: relative;
-  z-index: 1;
 }
 
 /* ===== 인트로 ===== */
@@ -768,15 +762,12 @@ body.loaded a[href*="youtube"] {
   transition-delay: 0.5s;
 }
 
+/* 캘린더 페이지에서는 도트 제거 */
 .calendar-page .calendar-day.has-post::after {
   display: none;
 }
 
-
-#floating-stars {
-  z-index: 0;
-}
-
+/* 별은 콘텐츠 뒤 */
 .site-header,
 .page-content,
 .site-footer,
@@ -787,8 +778,10 @@ body.loaded a[href*="youtube"] {
   position: relative;
   z-index: 2;
 }
+
+/* PC에서 홈 미니 캘린더 위치 고정 */
 @media (min-width: 769px) {
-  .archive-calendar {
+  .post-grid + .archive-calendar {
     position: fixed !important;
     top: 100px !important;
     right: 70px !important;
