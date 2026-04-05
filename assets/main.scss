@@ -771,3 +771,12 @@ body.loaded a[href*="youtube"] {
 .calendar-page .calendar-day.has-post::after {
   display: none;
 }
+
+.archive-title,
+.category-menu,
+.post-grid,
+.archive-calendar,
+.calendar-page {
+  position: relative;
+  z-index: 2;
+}
