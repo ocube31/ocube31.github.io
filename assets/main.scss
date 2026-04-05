@@ -772,6 +772,14 @@ body.loaded a[href*="youtube"] {
   display: none;
 }
 
+
+v#floating-stars {
+  z-index: 0;
+}
+
+.site-header,
+.page-content,
+.site-footer,
 .archive-title,
 .category-menu,
 .post-grid,
