@@ -1,13 +1,13 @@
 ---
 ---
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&display=swap');
 @import "minima";
 
 /* ===== 기본 ===== */
 body {
   margin: 0;
   background: #f5efe6;
-  ffont-family: "Apple SD Gothic Neo", sans-serif;
+  font-family: "Apple SD Gothic Neo", "Pretendard", sans-serif;
   overflow-x: hidden;
 }
 
@@ -348,7 +348,7 @@ body.loaded #floating-stars {
   line-height: 1.4;
   margin-bottom: 10px;
 
-  font-family: "Noto Serif KR", serif !important;
+  font-family: "Noto Serif KR", "Apple SD Gothic Neo", serif;
   font-weight: 500;
   letter-spacing: 0.5px;
 
