@@ -6,4 +6,4 @@ categories: [diary]
 image: /assets/img/1.jpg
 ---
 
-***TEST**
+블로그 개설!
